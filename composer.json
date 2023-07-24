@@ -31,7 +31,14 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
+<<<<<<< HEAD
         }
+=======
+        },
+        "files": [
+            "app/Http/helpers.php"
+        ]
+>>>>>>> origin/master
     },
     "autoload-dev": {
         "psr-4": {
@@ -69,4 +76,8 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master
