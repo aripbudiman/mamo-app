@@ -3,10 +3,6 @@
 <header class="flex justify-center w-full p-5 bg-blue-800">
     <h1 class="font-semibold text-xl text-white font-poppins">Profile</h1>
 </header>
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 <div class="flex items-center w-full py-10 px-4 bg-blue-800">
     <img class="w-20 rounded-full border-2 border-gray-200" src="{{ asset(Auth::user()->foto) }}">
     <div class="ml-2 text-gray-100">
@@ -15,8 +11,6 @@
         <p class="text-xs">{{ Auth::user()->email }}</p>
     </div>
 </div>
-<<<<<<< HEAD
-=======
 <div class="card-balance w-full px-5 py-4">
     <div
         class="card bg-gradient-to-tl from-blue-800 via-blue-500 to-blue-800 w-full h-48 rounded-lg relative overflow-hidden shadow-xl">
@@ -43,7 +37,6 @@
         <img src="{{ asset('images/visa.png') }}" class="w-14 absolute right-5 bottom-5">
     </div>
 </div>
->>>>>>> origin/master
 <div class="w-full px-4 py-4">
     <div class="max-w-xs flex flex-col rounded-md shadow-sm">
         <button type="button"

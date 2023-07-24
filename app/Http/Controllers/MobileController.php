@@ -7,18 +7,10 @@ use App\Models\Monitoring;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Carbon;
->>>>>>> origin/master
-
 class MobileController extends Controller
 {
     public function home(){
-<<<<<<< HEAD
-        $data =Monitoring::where('user_id',Auth::id())->orderBy('id','desc')->get();
-        return view('mobile.home',compact('data'));
-=======
         if(Auth::user()->roles=='admin'){
             $data =Monitoring::orderBy('id','desc')->get();
             return view('mobile.home',compact('data'));
@@ -29,7 +21,6 @@ class MobileController extends Controller
             ->get();
             return view('mobile.home',compact('data'));
         }
->>>>>>> origin/master
     }
 
     public function riwayat(){

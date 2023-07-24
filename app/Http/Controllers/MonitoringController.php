@@ -53,11 +53,7 @@ class MonitoringController extends Controller
             }
             $newFilename = $newId.'__'.$data['anggota'].'__'.$data['majelis'].'__'.date('d-F-Y', strtotime($data['tanggal'])) . '.' . $uploadedFile->getClientOriginalExtension();
             $data['dokumentasi'] = $uploadedFile->storeAs('public/dokumentasi', $newFilename);
-<<<<<<< HEAD
-            $data['user_id']=1;
-=======
             $data['user_id']=Auth::id();
->>>>>>> origin/master
             Monitoring::create($data);
             DB::commit();
             return redirect()->back()->with('success', 'Monitoring berhasil ditambahkan');
