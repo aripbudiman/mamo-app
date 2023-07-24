@@ -40,4 +40,10 @@ class MobileController extends Controller
     public function profile(){
         return view('mobile.profile');
     }
+
+    public function edit_dok(Monitoring $monitoring){
+        
+        return view('mobile.edit_dok',compact('monitoring'));
+    }
+    
 }

@@ -74,9 +74,9 @@ class MonitoringController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Monitoring $monitoring)
     {
-        //
+        //    
     }
 
     /**
@@ -124,6 +124,7 @@ class MonitoringController extends Controller
 
     public function update_dokumentasi(Request $request,Monitoring $monitoring){
 
+            // return $monitoring;
         if($request->hasFile('dokumentasi')){
             $uploadedFile = $request->file('dokumentasi');
             $ext=$uploadedFile->getClientOriginalExtension();
@@ -132,11 +133,11 @@ class MonitoringController extends Controller
             $newNamaFoto=$monitoring->id.'__'.$nama.'__'.$majelis.'__'.$monitoring->tanggal.'.'.$ext;
             $monitoring->dokumentasi=$uploadedFile->storeAs('public/dokumentasi',$newNamaFoto);
             $monitoring->save();
-            return redirect()->back();
+            return redirect()->back()->with('success','Monitoring berhasil di updated');
         }else{
             $monitoring->dokumentasi=$monitoring->dokumentasi;
             $monitoring->save();
-            return redirect()->back();
+            return redirect()->back()->with('success','Monitoring berhasil di updated');
         }   
     }
 
@@ -148,13 +149,11 @@ class MonitoringController extends Controller
         $request->validate([
             'file' => 'required|mimes:xls,xlsx'
         ]);
-    
         try {
             $file = $request->file('file');
             $spreadsheet = IOFactory::load($file);
             $worksheet = $spreadsheet->getActiveSheet();
             $rows = $worksheet->toArray();
-    
             // Mulai dari baris kedua untuk menghindari baris judul
             foreach ($rows as $key => $row) {
                 if ($key == 0) continue; // Lewati baris judul
@@ -170,16 +169,16 @@ class MonitoringController extends Controller
                     'nominal' => $row[8],
                     'dokumentasi' => $row[9],
                 ];
-    
                 // Simpan data ke tabel monitoring sesuai kebutuhan Anda
                 Monitoring::create($data);
             }
-    
             return redirect()->back()->with('success', 'Data berhasil diimpor');
         } catch (\Exception $e) {
             $error=$e;
             return $error;
         }
+
+        
     }
 
 }

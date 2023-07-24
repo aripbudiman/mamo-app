@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/mobile/{details}/details',[MobileController::class,'details'])->name('mobile.details');
     Route::get('/mobile/form',[MobileController::class,'form'])->name('mobile.form');
     Route::get('/mobile/profile',[MobileController::class,'profile'])->name('mobile.profile');
+    Route::get('/mobile/{monitoring}/dokumentasi',[MobileController::class,'edit_dok'])->name('mobile.edit_dok');
+    Route::put('/mobile/{monitoring}',[MonitoringController::class,'update_dokumentasi'])->name('monitoring.update_dok');
 });
 
 require __DIR__.'/auth.php';

@@ -22,19 +22,29 @@
         $datesAsString = implode(', ', $dates);
         @endphp
         @foreach ($dates as $date)
-        <div class="px-3 text-center ext-xs">
-            <p class="text-slate-700">{{ date('D',strtotime($date)) }}</p>
-            <p class="text-slate-900 font-bold font-poppins">{{ date('d',strtotime($date)) }}</p>
+        <div class="px-3 text-center py-2 ext-xs">
+            <form>
+                <button type="submit">
+                    <p class="text-slate-700">{{ date('D',strtotime($date)) }}</p>
+                    <p class="text-slate-900 font-bold font-poppins">{{ date('d',strtotime($date)) }}</p>
+                </button>
+            </form>
         </div>
         @endforeach
     </div>
 </div>
-<div class="overflow-scroll h-[63%] mt-5">
+<div class="overflow-scroll h-[63%] mt-3">
     @foreach ($data as $item)
-    <div class="card bg-white my-2 mx-4 px-2 py-3 rounded-md shadow-sm">
-        <h1 class="text-md text-slate-800 font-poppins font-semibold lowercase">{{ $item->anggota }}</h1>
-        <p class="text-[10px] text-slate-600 font-poppins">
-            {{  date('d-m-Y',strtotime($item->tanggal)) }} 🕛 {{  date('H:i',strtotime($item->created_at)) }}</p>
+    <div class="card bg-white my-2 mx-4 px-4 py-3 flex justify-between rounded-md shadow-sm">
+        <div>
+            <h1 class="text-md text-slate-800 font-poppins font-semibold lowercase">{{ $item->anggota }}</h1>
+            <h1 class="text-sm text-slate-800 font-poppins font-semibold capitalize">{{ $item->majelis }}</h1>
+            <p class="text-[10px] text-slate-600 font-poppins">
+                {{  date('d-m-Y',strtotime($item->tanggal)) }} 🕛 {{  date('H:i',strtotime($item->created_at)) }}</p>
+        </div>
+        <div class="text-center">
+            <a href="{{ route('mobile.edit_dok',$item->id) }}" class="text-sky-500 block">Edit</a>
+        </div>
     </div>
     @endforeach
 </div>
