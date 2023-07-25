@@ -55,7 +55,7 @@
           file:py-3 file:px-4
           dark:file:bg-gray-700 dark:file:text-gray-400">
     <button type="submit"
-        class="py-3 px-4 w-full inline-flex my-3 justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+        class="py-3 px-4 w-full inline-flex mt-3 mb-3 justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
         Update Dokumentasi
     </button>
     <a href="{{ route('mobile.home') }}"

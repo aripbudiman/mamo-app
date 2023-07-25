@@ -36,16 +36,18 @@
 <div class="overflow-scroll h-[63%] mt-3">
     @foreach ($data as $item)
     <a href="{{ route('mobile.details',$item->id) }}">
-        <div class="card bg-white my-2 mx-4 px-4 py-3 flex justify-between rounded-md shadow-sm">
+        <div class="card max-w-full bg-white my-2 mx-4 px-4 py-3 flex justify-between rounded-md shadow-sm">
             <div>
                 <h1 class="text-md text-slate-800 font-poppins font-semibold lowercase">{{ $item->anggota }}</h1>
                 <h1 class="text-sm text-slate-800 font-poppins font-semibold capitalize">{{ $item->majelis }}</h1>
                 <p class="text-[10px] text-slate-600 font-poppins">
-                    {{  date('d-m-Y',strtotime($item->tanggal)) }} 🕛 {{  date('H:i',strtotime($item->created_at)) }}
+                    {{  date('d-m-Y',strtotime($item->tanggal)) }} 🕛 {{  date('H:i',strtotime($item->created_at)) }} <a
+                        href="{{ route('mobile.edit_dok',$item->id) }}" class="text-sky-500 px-2 tex-xs">Edit</a>
                 </p>
             </div>
-            <div class="text-center">
-                <a href="{{ route('mobile.edit_dok',$item->id) }}" class="text-sky-500 block">Edit</a>
+            <div class="text-right flex flex-col justify-between">
+                <h1 class="text-xs text-slate-800 font-poppins font-semibold capitalize">Rp
+                    {{ number_format($item->nominal,0,',','.') }}</h1>
             </div>
         </div>
     </a>

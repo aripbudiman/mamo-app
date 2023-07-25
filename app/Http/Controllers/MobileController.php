@@ -47,11 +47,18 @@ class MobileController extends Controller
     }
 
     public function day(String $id){
-        $data =Monitoring::where('user_id',Auth::id())
-            ->whereDate('tanggal','=',$id)
+        if(Auth::user()->roles=='admin'){
+            $data =Monitoring::whereDate('tanggal','=',$id)
             ->orderBy('id','desc')
             ->get();
             return view('mobile.home',compact('data'));
+        }else{
+            $data =Monitoring::where('user_id',Auth::id())
+                ->whereDate('tanggal','=',$id)
+                ->orderBy('id','desc')
+                ->get();
+                return view('mobile.home',compact('data'));
+        }
     }
     
 }
