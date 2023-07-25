@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/mobile/profile',[MobileController::class,'profile'])->name('mobile.profile');
     Route::get('/mobile/{monitoring}/dokumentasi',[MobileController::class,'edit_dok'])->name('mobile.edit_dok');
     Route::put('/mobile/{monitoring}',[MonitoringController::class,'update_dokumentasi'])->name('monitoring.update_dok');
+    Route::get('/mobile/{tgl}/monitoring_hari_ini_tanggal',[MobileController::class,'day'])->name('mobile.day');
 });
 
 require __DIR__.'/auth.php';
