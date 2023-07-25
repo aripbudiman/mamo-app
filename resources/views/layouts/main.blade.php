@@ -179,7 +179,7 @@
                         <ul class="pt-2 pl-2">
                             <li>
                                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-md hover:bg-blue-600"
-                                    href="javascript:;">
+                                    href="{{ route('monitoring.laporan') }}">
                                     Laporan PYDB
                                 </a>
                             </li>

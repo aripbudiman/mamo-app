@@ -18,7 +18,7 @@ class MonitoringController extends Controller
      */
     public function index()
     {
-        $monitoring=Monitoring::all();
+        $monitoring=Monitoring::orderBy('id','desc')->get();
         return view('monitoring.list-monitoring-pydb',compact('monitoring'));
     }
 
@@ -179,6 +179,11 @@ class MonitoringController extends Controller
         }
 
         
+    }
+
+    public function laporan_pydb(){
+        return 'halo';
+        return view('monitoring.laporan-pydb');
     }
 
 }

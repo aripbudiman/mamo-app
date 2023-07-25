@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/import/excel', [AnggotaController::class, 'importExcel'])->name('import.excel');
     Route::get('/import/monitoring',[MonitoringController::class,'import'])->name('import');
     Route::post('import-monitoring', [MonitoringController::class, 'import_monitoring'])->name('monitoring.import');
+    Route::get('/monitoring/laporan',[MonitoringController::class,'laporan_pydb'])->name('monitoring.laporan');
 });
 
 Route::middleware('auth')->group(function(){
