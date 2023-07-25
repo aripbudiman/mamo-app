@@ -29,7 +29,7 @@
 <div class="w-full py-2 px-4">
     <div class="flex justify-between">
         <div class="day">
-            <p class="text-xs text-slate-800 font-poppins">{{ date('d,F Y') }}</p>
+            <p class="text-xs text-slate-800 font-poppins">{{ date('d F Y') }}</p>
             <h1 class="text-slate-900 font-poppins font-bold">Today</h1>
         </div>
     </div>
@@ -76,7 +76,8 @@
                     <form action="{{ route('mobile.delete',$item->id) }}" method="post" class="inline-flex">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-rose-500 text-[10px] px-1 tex-xs">Delete</button>
+                        <button onclick="return confirm('Are you sure?')" type="submit"
+                            class="text-rose-500 text-[10px] px-1 tex-xs">Delete</button>
                     </form>
                 </div>
             </div>

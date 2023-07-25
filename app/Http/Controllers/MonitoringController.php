@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
 class MonitoringController extends Controller
 {
@@ -180,10 +182,66 @@ class MonitoringController extends Controller
 
         
     }
-
-    public function laporan_pydb(){
-        return 'halo';
+    public function laporan(){
         return view('monitoring.laporan-pydb');
     }
+
+    public function excel(Request $request,Monitoring $monitoring){
+        $dari=$request->dari_tanggal;
+        $sampai=$request->sampai_tanggal;
+        $data=$monitoring::with('user')->whereBetween('tanggal', [$dari, $sampai])->get();
+        // return $data;
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Header
+        $sheet->setCellValue('A1', 'Tanggal');
+        $sheet->setCellValue('B1', 'Petugas');
+        $sheet->setCellValue('C1', 'Anggota');
+        $sheet->setCellValue('D1', 'Majelis');
+        $sheet->setCellValue('E1', 'Nominal');
+        $sheet->setCellValue('F1', 'Pola Bayar');
+        $sheet->setCellValue('G1', 'Ditemui');
+        $sheet->setCellValue('H1', 'Kondisi');
+        $sheet->setCellValue('I1', 'Hasil');
+        $sheet->setCellValue('J1', 'Dokumentasi');
+        // Tambahkan kolom lain sesuai kebutuhan
+
+        // Data
+        $row = 2;
+        foreach ($data as $item) {
+            $sheet->setCellValue('A' . $row, $item->tanggal);
+            $sheet->setCellValue('B' . $row, $item->user->sub_name);
+            $sheet->setCellValue('C' . $row, $item->anggota);
+            $sheet->setCellValue('D' . $row, $item->majelis);
+            $sheet->setCellValue('E' . $row, $item->nominal);
+            $sheet->setCellValue('F' . $row, $item->pola_bayar);
+            $sheet->setCellValue('G' . $row, $item->ditemui);
+            $sheet->setCellValue('H' . $row, $item->kondisi);
+            $sheet->setCellValue('I' . $row, $item->hasil);
+            // Tambahkan kolom lain sesuai kebutuhan
+            if ($item->dokumentasi == 0) {
+                $sheet->setCellValue('J' . $row, 'Tidak ada gambar');
+            } else {
+                $imagePath = storage_path('app/' . $item->dokumentasi);
+            }
+            $drawing = new Drawing();
+            $drawing->setPath($imagePath);
+            $drawing->setWidth(50); // Ubah lebar gambar sesuai kebutuhan
+            $drawing->setHeight(50); // Ubah tinggi gambar sesuai kebutuhan
+            $drawing->setCoordinates('J' . $row); // Kolom tempat gambar akan disisipkan (C pada contoh ini)
+            $drawing->setWorksheet($sheet);
+    
+            $sheet->getRowDimension($row)->setRowHeight($drawing->getHeight());
+            $row++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $filename = 'data monitoring '.$dari.'s/d'.$sampai.'.xlsx';
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+        }
 
 }
