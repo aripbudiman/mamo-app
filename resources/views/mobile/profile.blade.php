@@ -37,22 +37,7 @@
         <img src="{{ asset('images/visa.png') }}" class="w-14 absolute right-5 bottom-5">
     </div>
 </div>
-<div class="w-full px-4 py-4">
-    <div class="max-w-xs flex flex-col rounded-md shadow-sm">
-        <button type="button"
-            class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-t-md border font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
-            Item 1
-        </button>
-        <button type="button"
-            class="-mt-px py-3 px-4 inline-flex justify-center items-center gap-2 border font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
-            Item 2
-        </button>
-        <button type="button"
-            class="-mt-px py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-md border font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
-            Item 3
-        </button>
-    </div>
-</div>
+
 <div class="w-full px-4 py-6">
     <form action="{{ route('logout') }}" method="post">
         @csrf

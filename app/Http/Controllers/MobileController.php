@@ -60,5 +60,10 @@ class MobileController extends Controller
                 return view('mobile.home',compact('data'));
         }
     }
+
+    public function delete(Monitoring $id){
+        $id->delete();
+        return back()->with('success','Monitoring berhasil dihapus');
+    }
     
 }
