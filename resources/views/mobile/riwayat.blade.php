@@ -4,7 +4,7 @@
     <a href="{{  route('mobile.home') }}"><i class="bi bi-chevron-left fill-blue-800 font-semibold mr-3"></i> Riwayat
         Kunjungan PYDB</a>
 </header>
-<div class="px-5 pt-16 w-full bg-blue-200">
+<div class="px-5 pt-16 w-full bg-blue-200 box-border">
     @forelse ($data as $item)
     <a href="{{ route('mobile.details',$item->id) }}">
         <div class="card bg-white my-2 px-4 py-3 flex justify-between rounded-md shadow-sm">

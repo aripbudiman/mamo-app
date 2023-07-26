@@ -28,9 +28,15 @@
 </div> --}}
 <div class="w-full py-2 px-4 box-border">
     <div class="flex justify-between">
-        <div class="day">
-            <p class="text-xs text-slate-800 font-poppins">{{ date('d F Y') }}</p>
-            <h1 class="text-slate-900 font-poppins font-bold">Today</h1>
+        <div class="day flex justify-between w-full">
+            <div>
+                <p class="text-xs text-slate-800 font-poppins">{{ date('d F Y') }}</p>
+                <h1 class="text-slate-900 font-poppins font-bold">Today</h1>
+            </div>
+            <div class="text-right">
+                <p class="text-xs text-slate-800 font-poppins">{{ $count }} Input</p>
+                <h1 class="text-slate-900 font-poppins font-bold">Rp {{ number_format($nominal,0,',','.') }}</h1>
+            </div>
         </div>
     </div>
 </div>
@@ -86,4 +92,8 @@
     @endforeach
 </div>
 @include('mobile.footer')
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script>
+</script>
 @endsection

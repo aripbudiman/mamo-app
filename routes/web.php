@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function(){
     Route::get('/mobile/home',[MobileController::class,'home'])->name('mobile.home');
     Route::get('/mobile/riwayat',[MobileController::class,'riwayat'])->name('mobile.riwayat');
+    Route::get('/mobile/hasil',[MobileController::class,'hasil'])->name('mobile.hasil');
     Route::get('/mobile/{details}/details',[MobileController::class,'details'])->name('mobile.details');
     Route::get('/mobile/form',[MobileController::class,'form'])->name('mobile.form');
     Route::get('/mobile/profile',[MobileController::class,'profile'])->name('mobile.profile');

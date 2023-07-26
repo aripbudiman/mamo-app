@@ -10,8 +10,8 @@
         </a>
         <a class="p-4 text-center text-blue-800 bg-blue-100 rounded-full w-12 h-12 flex justify-center items-center"
             href="{{ route('mobile.form') }}"><i class="bi bi-camera text-[30px]"></i></a>
-        <a class="{{ request()->routeIs('mobile.profile') ? 'text-white font-semibold' : 'text-blue-200' }} p-4 text-center"
-            href="#"><i class="bi bi-wallet2"></i>
+        <a class="{{ request()->routeIs('mobile.hasil') ? 'text-white font-semibold' : 'text-blue-200' }} p-4 text-center"
+            href="{{ route('mobile.hasil') }}"><i class="bi bi-wallet2"></i>
             <p class="text-xs">Hasil</p>
         </a>
         <a class="{{ request()->routeIs('mobile.profile') ? 'text-white font-semibold' : 'text-blue-200' }} p-4 text-center"

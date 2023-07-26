@@ -12,14 +12,19 @@ class MobileController extends Controller
 {
     public function home(){
         if(Auth::user()->roles=='admin'){
-            $data =Monitoring::orderBy('id','desc')->get();
-            return view('mobile.home',compact('data'));
+            $data =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))
+            ->orderBy('id','desc')->get();
+            $nominal =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
+            $count =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
+            return view('mobile.home',compact('data','nominal','count'));
         }else{
             $data =Monitoring::where('user_id',Auth::id())
             ->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))
             ->orderBy('id','desc')
             ->get();
-            return view('mobile.home',compact('data'));
+            $nominal =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
+            $count =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
+            return view('mobile.home',compact('data','nominal','count'));
         }
     }
 
@@ -38,8 +43,13 @@ class MobileController extends Controller
     }
 
     public function form(){
-        $user=User::where('roles','tpl')->where('id',Auth::id())->get();
-        return view('mobile.form-monitoring',compact('user'));
+        if(Auth::user()->roles=='admin'){
+            $user=User::where('roles','tpl')->get();
+            return view('mobile.form-monitoring',compact('user'));
+        }else{
+            $user=User::where('roles','tpl')->where('id',Auth::id())->get();
+            return view('mobile.form-monitoring',compact('user'));
+        } 
     }
 
     public function profile(){
@@ -56,19 +66,28 @@ class MobileController extends Controller
             $data =Monitoring::whereDate('tanggal','=',$id)
             ->orderBy('id','desc')
             ->get();
-            return view('mobile.home',compact('data'));
+            $nominal =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime($id)))->sum('nominal');
+            $count =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime($id)))->count();
+            return view('mobile.home',compact('data','nominal','count'));
         }else{
             $data =Monitoring::where('user_id',Auth::id())
                 ->whereDate('tanggal','=',$id)
                 ->orderBy('id','desc')
                 ->get();
-                return view('mobile.home',compact('data'));
+                $nominal =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime($id)))->sum('nominal');
+                $count =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime($id)))->count();
+                return view('mobile.home',compact('data','nominal','count'));
         }
     }
 
     public function delete(Monitoring $id){
         $id->delete();
         return back()->with('success','Monitoring berhasil dihapus');
+    }
+
+    public function hasil(){
+        
+        return view('mobile.hasil');
     }
     
 }

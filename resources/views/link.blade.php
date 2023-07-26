@@ -13,3 +13,4 @@
 <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @vite(['resources/css/app.css','resources/js/app.js'])
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
