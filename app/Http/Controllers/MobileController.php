@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 class MobileController extends Controller
 {
+
+    private $monitoring, $dari,$sampai;
+    public function __construct()
+    {
+        $this->monitoring=new Monitoring();
+        $this->dari=now()->firstOfMonth()->toDateString();
+        $this->sampai=now()->lastOfMonth()->toDateString();
+    }
     public function home(){
         if(Auth::user()->roles=='admin'){
             $data =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))
@@ -86,8 +94,48 @@ class MobileController extends Controller
     }
 
     public function hasil(){
+        if(Auth::user()->roles=='admin'){
+            $nominal=Monitoring::whereBetween('tanggal',[$this->dari,$this->sampai])->sum('nominal');
+            $count=Monitoring::whereBetween('tanggal',[$this->dari,$this->sampai])->count();
+            $bisaDitemui=Monitoring::where('ditemui','bisa')->whereBetween('tanggal',[$this->dari,$this->sampai])->count();
+            $tidakBisaDitemui=Monitoring::where('ditemui','tidak bisa')->whereBetween('tanggal',[$this->dari,$this->sampai])->count();
+            $polaBayar=Monitoring::groupBy('pola_bayar') ->select('pola_bayar', \DB::raw('count(*) as count'))
+            ->get();
+            $polaBayarKategori=[];
+            $countPolaBayar=[];
+            foreach ($polaBayar as $key=>$value) {
+                $polaBayarKategori[$key]=$value->pola_bayar;
+                $countPolaBayar[$key]=$value->count;
+            }
+            return view('mobile.hasil',[
+                'kategori'=>$polaBayarKategori,
+                'count_pola'=>$countPolaBayar,
+                'count'=>$count,
+                'nominal'=>$nominal,
+                'akun'=>$count
+            ]);
+        }else{
+            $nominal=Monitoring::where('user_id',Auth::id())->whereBetween('tanggal',[$this->dari,$this->sampai])->sum('nominal');
+            $count=Monitoring::where('user_id',Auth::id())->whereBetween('tanggal',[$this->dari,$this->sampai])->count();
+            $bisaDitemui=Monitoring::where('user_id',Auth::id())->where('ditemui','bisa')->whereBetween('tanggal',[$this->dari,$this->sampai])->count();
+            $tidakBisaDitemui=Monitoring::where('user_id',Auth::id())->where('ditemui','tidak bisa')->whereBetween('tanggal',[$this->dari,$this->sampai])->count();
+            $polaBayar=Monitoring::where('user_id',Auth::id())->groupBy('pola_bayar') ->select('pola_bayar', \DB::raw('count(*) as count'))
+            ->get();
+            $polaBayarKategori=[];
+            $countPolaBayar=[];
+            foreach ($polaBayar as $key=>$value) {
+                $polaBayarKategori[$key]=$value->pola_bayar;
+                $countPolaBayar[$key]=$value->count;
+            }
+            return view('mobile.hasil',[
+                'kategori'=>$polaBayarKategori,
+                'count_pola'=>$countPolaBayar,
+                'count'=>$count,
+                'nominal'=>$nominal,
+                'akun'=>$count
+            ]);
+        }
         
-        return view('mobile.hasil');
     }
     
 }
