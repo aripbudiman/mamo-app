@@ -7,7 +7,7 @@
     </div>
     <img class="w-10 rounded-full" src="{{ asset(Auth::user()->foto) }}" alt="" srcset="">
 </header>
-<div class="bg-yellow-50/80 border border-yellow-200 rounded-md p-4 absolute top-0 inset-x-0" role="alert">
+{{-- <div class="bg-yellow-50/80 border border-yellow-200 rounded-md p-4 absolute top-0 inset-x-0" role="alert">
     <div class="flex">
         <div class="flex-shrink-0">
             <svg class="h-4 w-4 text-yellow-400 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <div class="w-full py-2 px-4">
     <div class="flex justify-between">
         <div class="day">
@@ -41,7 +41,7 @@
         $datesAsString = implode(', ', $dates);
         @endphp
         @foreach ($dates as $date)
-        <div class="px-3 text-center py-2 ext-xs">
+        <div class="px-2 w-8 flex justify-center mx-2 rounded-lg text-center py-2 text-xs bg-yellow-300">
             <a href="{{ route('mobile.day',date('Y-m-d',strtotime($date))) }}">
                 <button type="button">
                     <p class="text-slate-700">{{ date('D',strtotime($date)) }}</p>
@@ -52,7 +52,7 @@
         @endforeach
     </div>
 </div>
-<div class="overflow-scroll h-[63%] mt-3">
+<div class="overflow-scroll h-[63%] mt-3 pb-20">
     @foreach ($data as $item)
     <a href="{{ route('mobile.details',$item->id) }}">
         <div class="card bg-white my-2 mx-4 px-4 py-3 flex justify-between rounded-md shadow-sm">

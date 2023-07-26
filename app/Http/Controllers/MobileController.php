@@ -24,8 +24,13 @@ class MobileController extends Controller
     }
 
     public function riwayat(){
-        $data =Monitoring::where('user_id',Auth::id())->orderBy('tanggal','desc')->get();
-        return view('mobile.riwayat',compact('data'));
+        if(Auth::user()->roles=='admin'){
+            $data =Monitoring::with('user')->orderBy('id','desc')->get();
+            return view('mobile.riwayat',compact('data'));
+        }else{
+            $data =Monitoring::with('user')->where('user_id',Auth::id())->orderBy('id','desc')->get();
+            return view('mobile.riwayat',compact('data'));
+        }
     }
 
     public function details(Monitoring $details){
