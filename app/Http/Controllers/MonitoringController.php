@@ -187,7 +187,8 @@ class MonitoringController extends Controller
     }
 
     public function excel(Request $request,Monitoring $monitoring){
-        $dari=$request->dari_tanggal;
+        try {
+            $dari=$request->dari_tanggal;
         $sampai=$request->sampai_tanggal;
         $data=$monitoring::with('user')->whereBetween('tanggal', [$dari, $sampai])->get();
         // return $data;
@@ -242,6 +243,10 @@ class MonitoringController extends Controller
         header('Content-Disposition: attachment;filename="' . $filename . '"');
         header('Cache-Control: max-age=0');
         $writer->save('php://output');
+        } catch (\Throwable $th) {
+            return $th;
+        }
+        
         }
 
 }
