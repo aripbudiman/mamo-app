@@ -26,7 +26,7 @@
         </div>
     </div>
 </div> --}}
-<div class="w-full py-2 px-4">
+<div class="w-full py-2 px-4 box-border">
     <div class="flex justify-between">
         <div class="day">
             <p class="text-xs text-slate-800 font-poppins">{{ date('d F Y') }}</p>
