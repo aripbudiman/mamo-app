@@ -52,7 +52,7 @@
         @endforeach
     </div>
 </div>
-<div class="overflow-scroll h-[63%] mt-3 pb-20">
+<div class="overflow-scroll h-[63%] mt-3 pb-20 box-border">
     @foreach ($data as $item)
     <a href="{{ route('mobile.details',$item->id) }}">
         <div class="card bg-white my-2 mx-4 px-4 py-3 flex justify-between rounded-md shadow-sm">
