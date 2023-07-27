@@ -78,18 +78,29 @@ class AnggotaController extends Controller
         $data = $sheet->toArray();
 
         foreach ($data as $row) {
-            $namaAnggota = $row[0];
-            $majelis = $row[1];
-            $petugas = $row[2];
+            $idAnggota = $row[0];
+            $namaAnggota = $row[1];
+            $majelis = $row[2];
+            $petugas = $row[3];
+            $outstanding = $row[4];
 
             $anggota=new Anggota();
+            $anggota->id_anggota=str_replace(" ","",$idAnggota);
             $anggota->nama_anggota=$namaAnggota;
             $anggota->majelis=$majelis;
             $anggota->petugas=$petugas;
+            $anggota->outstanding=$outstanding;
             $anggota->save();
         }
 
         return redirect()->back()->with('success', 'Data berhasil diimpor dari file Excel.');
+    }
+
+
+    public function resetAnggota()
+    {
+        Anggota::resetAnggota();
+        return redirect()->back()->with('success', 'Data anggota berhasil direset.');
     }
 
     

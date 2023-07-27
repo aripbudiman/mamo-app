@@ -10,6 +10,13 @@
         data-hs-overlay="#hs-static-backdrop-modal">
         Import Anggota
     </button>
+    <form action="{{ route('anggota.reset') }}" method="POST" class="inline" onclick="return confirm('Are you sure?')">
+        @csrf
+        <button type="submit"
+            class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-slate-800 text-white hover:bg-slate-600 transition-all text-sm dark:focus:ring-offset-gray-800">
+            Reset Anggota
+        </button>
+    </form>
     @include('alert')
     @include('anggota/modal-import')
     <div class="flex flex-col mt-10">
@@ -36,49 +43,46 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-gray-700">
                                 <tr>
-                                    <th scope="col" class="py-3 px-4 pr-0">
-                                        <div class="flex items-center h-5">
-                                            <input id="hs-table-pagination-checkbox-all" type="checkbox"
-                                                class="border-gray-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
-                                            <label for="hs-table-pagination-checkbox-all"
-                                                class="sr-only">Checkbox</label>
-                                        </div>
-                                    </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama
+                                        class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase">Id
                                         Anggota
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama
-                                        Majelis</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Petugas
+                                        class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama
+                                        Anggota
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Action
+                                        class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama
+                                        Majelis</th>
+                                    <th scope="col"
+                                        class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase">Petugas
+                                    </th>
+                                    <th scope="col"
+                                        class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase">Saldo
+                                    </th>
+                                    <th scope="col"
+                                        class="px-2 py-3 text-right text-xs font-medium text-gray-500 uppercase">Action
                                     </th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                 @foreach ($anggota as $item)
                                 <tr>
-                                    <td class="py-3 pl-4">
-                                        <div class="flex items-center h-5">
-                                            <input id="hs-table-pagination-checkbox-1" type="checkbox"
-                                                class="border-gray-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
-                                            <label for="hs-table-pagination-checkbox-1" class="sr-only">Checkbox</label>
-                                        </div>
-                                    </td>
                                     <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                                        class="px-2 py-1 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                                        {{ $item->id_anggota }}</td>
+                                    <td
+                                        class="px-2 py-1 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
                                         {{ $item->nama_anggota }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                                    <td class="px-2 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
                                         {{ $item->majelis }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                                    <td class="px-2 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
                                         {{ $item->petugas }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a class="text-blue-500 hover:text-blue-700" href="#">Delete</a>
+                                    <td class="px-2 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                                        {{ number_format($item->outstanding,0,',','.') }}</td>
+                                    <td class="px-2 py-1 whitespace-nowrap text-right text-sm font-medium">
+                                        <a class="text-blue-500 hover:text-blue-700" href="#">Edit</a>
                                     </td>
                                 </tr>
                                 @endforeach

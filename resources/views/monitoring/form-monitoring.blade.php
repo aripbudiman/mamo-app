@@ -17,7 +17,8 @@
                 <input type="date" id="tanggal" name="tanggal"
                     class="py-3 @error('tanggal')
                         border-red-500
-                    @enderror px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                    @enderror px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                    required>
                 @error('tanggal')
                 <p class="text-red-500">{{ $message }}</p>
                 @enderror
@@ -25,19 +26,22 @@
             <div class="mb-3">
                 <label for="petugas" class="block text-sm font-semibold mb-2 dark:text-white">Petugas</label>
                 <select id="petugas"
-                    class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                    class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                    required>
                     <option value="">--Pilih Petugas--</option>
                     @foreach ($user as $item)
                     <option value="{{ $item->sub_name }}">{{ $item->sub_name }}</option>
                     @endforeach
                 </select>
             </div>
+
             <div class="mb-3">
                 <label for="majelis" class="block text-sm font-semibold mb-2 dark:text-white">Majelis</label>
                 <select id="majelis" name="majelis"
                     class="@error('majelis')
                         border-red-500
-                    @enderror py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                    @enderror py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                    required>
                 </select>
                 @error('majelis')
                 <p class="text-red-500">{{ $message }}</p>
@@ -48,7 +52,8 @@
                 <select id="anggota" name="anggota"
                     class="@error('anggota')
                         border-red-500
-                    @enderror py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                    @enderror py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                    required>
                 </select>
                 @error('anggota')
                 <p class="text-red-500">{{ $message }}</p>
@@ -57,7 +62,8 @@
             <div class="mb-3">
                 <label for="nominal" class="block text-sm font-semibold mb-2 dark:text-white">Nominal Bayar</label>
                 <input type="text" name="nominal" id="nominal"
-                    class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                    class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                    required>
             </div>
             <div class="mb-3">
                 <label for="ditemui" class="block text-sm font-semibold mb-2 dark:text-white">Ditemui</label>
@@ -95,14 +101,14 @@
                     anggota saat ini:</label>
                 <textarea name="kondisi" id="kondisi"
                     class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
-                    rows="3"></textarea>
+                    rows="3" required></textarea>
             </div>
             <div class="mb-3">
                 <label for="hasil" class="block text-sm font-semibold mb-2 dark:text-white">Hasil penagihan atau
                     kunjungan ke PYDB:</label>
                 <textarea name="hasil" id="hasil"
                     class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
-                    rows="3"></textarea>
+                    rows="3" required></textarea>
             </div>
             <div class="mb-3">
                 <label for="input-label" class="block text-sm font-semibold mb-2 dark:text-white">Dokumentasi:</label>
@@ -145,7 +151,7 @@
                     $('#majelis').html(response)
                     var majelis = $('#majelis').val();
                     var token = $('meta[name="csrf-token"]').attr(
-                        'content'); // Ambil nilai token CSRF
+                        'content');
                     $.ajax({
                         url: "{{ route('monitoring.anggota') }}",
                         type: "POST",
@@ -154,7 +160,6 @@
                             _token: token
                         },
                         success: function (response) {
-                            console.log(response)
                             $('#anggota').html(response)
                         },
                         error: function (xhr, status, error) {
@@ -172,7 +177,7 @@
             $('#majelis').change(function (e) {
                 e.preventDefault();
                 var majelis = $(this).val();
-                var token = $('meta[name="csrf-token"]').attr('content'); // Ambil nilai token CSRF
+                var token = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     url: "{{ route('monitoring.anggota') }}",
                     type: "POST",
@@ -181,7 +186,6 @@
                         _token: token
                     },
                     success: function (response) {
-                        console.log(response)
                         $('#anggota').html(response)
                     },
                     error: function (xhr, status, error) {

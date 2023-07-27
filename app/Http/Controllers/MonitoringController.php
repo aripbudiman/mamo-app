@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Monitoring;
+use LDAP\Result;
 use App\Models\User;
+use App\Models\Monitoring;
 use Illuminate\Http\Request;
+use App\Events\MonitoringEvent;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -29,8 +31,13 @@ class MonitoringController extends Controller
      */
     public function create()
     {
-        $user=User::where('roles','tpl')->where('id',Auth::id())->get();
-        return view('monitoring.form-monitoring',compact('user'));
+        if(Auth::user()->roles=='admin'){
+            $user=User::all();
+            return view('monitoring.form-monitoring',compact('user'));
+        }else{
+            $user=User::where('roles','tpl')->where('id',Auth::id())->get();
+            return view('monitoring.form-monitoring',compact('user'));
+        }
     }
 
     /**
@@ -38,6 +45,7 @@ class MonitoringController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $request->validate([
             'tanggal'=>'required',
             'majelis'=>'required',
@@ -54,9 +62,14 @@ class MonitoringController extends Controller
                 $newId = 1;
             }
             $newFilename = $newId.'__'.$data['anggota'].'__'.$data['majelis'].'__'.date('d-F-Y', strtotime($data['tanggal'])) . '.' . $uploadedFile->getClientOriginalExtension();
+            
+            $anggota=explode('-', $request->anggota);
+            $data['anggota']=$anggota[0];
+            $data['anggota_id']=$anggota[1];
             $data['dokumentasi'] = $uploadedFile->storeAs('public/dokumentasi', $newFilename);
             $data['user_id']=Auth::id();
             Monitoring::create($data);
+            event(new MonitoringEvent($request->nominal));
             DB::commit();
             return redirect()->back()->with('success', 'Monitoring berhasil ditambahkan');
         } catch (\Throwable $th) {
@@ -114,13 +127,14 @@ class MonitoringController extends Controller
     public function select_anggota(Request $request){ 
         $majelis = $request->majelis;
         $anggota = DB::table('anggota')
-                ->select('nama_anggota')
+                ->select('nama_anggota','id_anggota')
                 ->where('majelis', $majelis)
                 ->get();
                 $output = '';
         foreach ($anggota as $a) {
-            $output .= '<option value="' . $a->nama_anggota . '">' . $a->nama_anggota. '</option>';
+            $output .= '<option value="' . $a->nama_anggota.'-'.$a->id_anggota.'" data-id_anggota="'.$a->id_anggota.'">' . $a->nama_anggota. '</option>';
         }
+
         return response()->json($output);
     }
 

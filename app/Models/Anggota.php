@@ -11,4 +11,8 @@ class Anggota extends Model
 
     protected $table='anggota';
     protected $guarded=[];
+
+    public static function resetAnggota(){
+        self::truncate();
+    }
 }

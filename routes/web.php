@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('anggota',AnggotaController::class);
+    Route::post('/anggota/reset', [AnggotaController::class, 'resetAnggota'])->name('anggota.reset');
     Route::resource('monitoring',MonitoringController::class);
     Route::post('monitoring/select-majelis',[MonitoringController::class,'select_majelis'])->name('monitoring.majelis');
     Route::post('monitoring/select-anggota',[MonitoringController::class,'select_anggota'])->name('monitoring.anggota');

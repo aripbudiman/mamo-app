@@ -1,4 +1,4 @@
-<footer class="bg-blue-800 absolute bottom-0 inset-x-0">
+<footer class="bg-{{Auth::user()->theme}}-800 absolute bottom-0 inset-x-0">
     <div class="grid grid-cols-5 place-items-center">
         <a class="{{ request()->routeIs('mobile.home') || request()->routeIs('mobile.day') ? 'text-white font-semibold' : 'text-blue-200' }} p-4 text-center"
             href="{{ route('mobile.home') }}"><i class="bi bi-house"></i>
