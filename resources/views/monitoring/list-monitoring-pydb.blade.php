@@ -54,7 +54,12 @@
 
                                 </td>
                                 <td class="px-2 py-2 whitespace-nowrap text-left text-sm font-medium">
-                                    <a class="text-blue-500 hover:text-blue-700" href="#">Delete</a>
+                                    <form action="{{ route('monitoring.destroy',$item->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700"
+                                            href="#">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

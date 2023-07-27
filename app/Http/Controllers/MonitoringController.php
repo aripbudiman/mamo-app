@@ -69,7 +69,6 @@ class MonitoringController extends Controller
             $data['dokumentasi'] = $uploadedFile->storeAs('public/dokumentasi', $newFilename);
             $data['user_id']=Auth::id();
             Monitoring::create($data);
-            event(new MonitoringEvent($request->nominal));
             DB::commit();
             return redirect()->back()->with('success', 'Monitoring berhasil ditambahkan');
         } catch (\Throwable $th) {
@@ -105,9 +104,10 @@ class MonitoringController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Monitoring $monitoring)
     {
-        //
+        $monitoring->delete();
+        return back()->with('success','Monitoring berhasil di delete');
     }
 
     public function select_majelis(Request $request){
