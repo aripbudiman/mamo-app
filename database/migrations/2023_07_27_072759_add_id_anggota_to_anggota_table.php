@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('anggota', function (Blueprint $table) {
             $table->string('id_anggota')->after('id')->nullable();
-            $table->decimal('outstanding',15,0)->unsigned()->after('petugas');
+            $table->decimal('outstanding',15,0)->unsigned()->after('petugas')->nullable();
         });
     }
 

@@ -191,6 +191,11 @@
                         <i class="bi bi-book"></i>
                         Documentation
                     </a></li>
+                <li>
+                    <form action="" method="post">
+                        <i class="bi bi-box-arrow-left"></i>
+                    </form>
+                </li>
             </ul>
         </nav>
     </div>
