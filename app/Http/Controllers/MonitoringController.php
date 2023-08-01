@@ -68,6 +68,10 @@ class MonitoringController extends Controller
             $data['anggota']=$anggota[0];
             $data['anggota_id']=$anggota[1];
             $harian=date('d-m-Y',strtotime($request->tanggal));
+            $folderPath = storage_path('app/public/dokumentasi/' . $harian);
+            if (!file_exists($folderPath)) {
+                mkdir($folderPath, 0777, true); // Jika folder belum ada, buat dengan izin 777
+            }
             $data['dokumentasi'] = $uploadedFile->storeAs('public/dokumentasi/'.$harian, $newFilename);
             $data['user_id']=Auth::id();
             Monitoring::create($data);
