@@ -14,6 +14,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class MonitoringController extends Controller
 {
@@ -66,7 +67,8 @@ class MonitoringController extends Controller
             $anggota=explode('-', $request->anggota);
             $data['anggota']=$anggota[0];
             $data['anggota_id']=$anggota[1];
-            $data['dokumentasi'] = $uploadedFile->storeAs('public/dokumentasi', $newFilename);
+            $harian=date('d-m-Y',strtotime($request->tanggal));
+            $data['dokumentasi'] = $uploadedFile->storeAs('public/dokumentasi/'.$harian, $newFilename);
             $data['user_id']=Auth::id();
             Monitoring::create($data);
             DB::commit();
@@ -110,7 +112,8 @@ class MonitoringController extends Controller
         return back()->with('success','Monitoring berhasil di delete');
     }
 
-    public function select_majelis(Request $request){
+    public function select_majelis(Request $request)
+    {
         $petugas = $request->petugas;
         $majelis = DB::table('anggota')
                 ->select('majelis')
@@ -255,6 +258,59 @@ class MonitoringController extends Controller
             return $th;
         }
         
+    }
+
+     public function edit_monitoring_idanggota(){
+        $petugas=User::where('roles','tpl')->get();
+        return view('monitoring.edit-idanggota-monitoring',compact('petugas'));
+    }
+
+    public function tampilkan(Request $request){
+        $majelis=$request->majelis;
+        $data=Monitoring::where('majelis',$majelis)->get();
+        $output='';
+        foreach($data as $d){
+            $output.='
+            <tr>
+            <td
+                class="px-1 py-1 w-20 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                <input type="text" name="id[]" value="'.$d->id.'" class="w-full text-center"></td>
+            <td
+                class="px-1 py-1 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                <input type="text" class="w-full" value="'.$d->anggota.'"></td>
+            <td class="px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                <input type="text" class="w-full" value="'.$d->majelis.'">
+            </td>
+            <td class="px-1 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+            <input type="text" class="w-full" value="'.date('d F Y',strtotime($d->tanggal)).'">
+            </td>
+            <td class="px-1 py-1 whitespace-nowrap text-right text-sm font-medium">
+                <input type="text" name="id_anggota[]" value="'.$d->anggota_id.'" class="w-full">
+            </td>
+        </tr>
+        ';
+        }
+        return response()->json($output);
+    }
+
+    public function update_id(Request $request){
+        $data = $request->all();
+        $ids = $data['id'];
+        $idAnggota = $data['id_anggota'];
+        foreach ($ids as $index => $id) {
+            // Cek apakah ID dan id_anggota tidak kosong/null
+            if (!empty($id) && !is_null($idAnggota[$index])) {
+                // Temukan data monitoring berdasarkan ID
+                $monitoring = Monitoring::find($id);
+
+                if ($monitoring) {
+                    // Update kolom "id_anggota" dengan nilai baru
+                    $monitoring->anggota_id = $idAnggota[$index];
+                    $monitoring->save();
+                }
+            }
         }
 
+        return back();
+    }
 }

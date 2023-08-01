@@ -103,5 +103,33 @@ class AnggotaController extends Controller
         return redirect()->back()->with('success', 'Data anggota berhasil direset.');
     }
 
+    public function live_search(Request $request){
+        $query = $request->input('query');
+        $data = Anggota::where('majelis', 'LIKE', "%{$query}%")->get();
+        $results='';
+        foreach($data as $item){
+            $results.='<tr>
+            <td
+                class="px-2 py-1 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                '.$item->id_anggota.'</td>
+            <td
+                class="px-2 py-1 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                '.$item->nama_anggota.'</td>
+            <td class="px-2 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                '.$item->majelis .'
+            </td>
+            <td class="px-2 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                '.$item->petugas .'</td>
+            <td class="px-2 py-1 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                '.number_format($item->outstanding,0,',','.').'</td>
+            <td class="px-2 py-1 whitespace-nowrap text-right text-sm font-medium">
+                <a class="text-blue-500 hover:text-blue-700" href="#">Edit</a>
+            </td>
+        </tr>';
+        }
+
+        return response()->json($results);
+    }
+
     
 }

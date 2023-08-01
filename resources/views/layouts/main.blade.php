@@ -160,6 +160,12 @@
                                     List Monitoring PYDB
                                 </a>
                             </li>
+                            <li>
+                                <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-md hover:bg-blue-600"
+                                    href="{{ route('monitoring.edit_idanggota') }}">
+                                    Edit Monitoring Anggota
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

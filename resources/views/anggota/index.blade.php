@@ -25,9 +25,8 @@
                 <div class="border rounded-lg divide-y divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
                     <div class="py-3 px-4">
                         <div class="relative max-w-xs">
-                            <label for="hs-table-with-pagination-search" class="sr-only">Search</label>
-                            <input type="text" name="hs-table-with-pagination-search"
-                                id="hs-table-with-pagination-search"
+                            <label for="search-anggota" class="sr-only">Search</label>
+                            <input type="text" name="search-anggota" id="search-anggota"
                                 class="p-3 pl-10 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                                 placeholder="Search for items">
                             <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4">
@@ -65,7 +64,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tbody id="list-data" class="divide-y divide-gray-200 dark:divide-gray-700">
                                 @foreach ($anggota as $item)
                                 <tr>
                                     <td
@@ -110,4 +109,27 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('#search-anggota').on('input', function () {
+            let query = $(this).val().trim();
+            var token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                type: "POST",
+                url: "{{route('live_search')}}",
+                data: {
+                    query: query,
+                    _token: token
+                },
+                dataType: "JSON",
+                success: function (response) {
+                    $('#list-data').html(response)
+                }
+            });
+        });
+    });
+
+</script>
 @endsection
