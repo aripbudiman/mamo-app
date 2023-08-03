@@ -19,7 +19,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
     public const MOBILE = '/mobile/home';
-
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */
@@ -37,5 +36,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+        
     }
 }

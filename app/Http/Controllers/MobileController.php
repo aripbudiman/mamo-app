@@ -20,11 +20,23 @@ class MobileController extends Controller
     }
     public function home(){
         if(Auth::user()->roles=='admin'){
+            $nominal =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
+            $count =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
+            return view('mobile.home');
+        }else{
+            $nominal =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
+                $count =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
+            return view('mobile.home');
+        }
+    }
+
+    public function riwayat(){
+        if(Auth::user()->roles=='admin'){
             $data =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))
             ->orderBy('id','desc')->get();
             $nominal =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
             $count =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
-            return view('mobile.home',compact('data','nominal','count'));
+            return view('mobile.riwayat',compact('data','nominal','count'));
         }else{
             $data =Monitoring::where('user_id',Auth::id())
             ->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))
@@ -32,17 +44,7 @@ class MobileController extends Controller
             ->get();
             $nominal =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
             $count =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
-            return view('mobile.home',compact('data','nominal','count'));
-        }
-    }
-
-    public function riwayat(){
-        if(Auth::user()->roles=='admin'){
-            $data =Monitoring::with('user')->orderBy('id','desc')->get();
-            return view('mobile.riwayat',compact('data'));
-        }else{
-            $data =Monitoring::with('user')->where('user_id',Auth::id())->orderBy('id','desc')->get();
-            return view('mobile.riwayat',compact('data'));
+            return view('mobile.riwayat',compact('data','nominal','count'));
         }
     }
 
@@ -76,7 +78,7 @@ class MobileController extends Controller
             ->get();
             $nominal =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime($id)))->sum('nominal');
             $count =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime($id)))->count();
-            return view('mobile.home',compact('data','nominal','count'));
+            return view('mobile.riwayat',compact('data','nominal','count'));
         }else{
             $data =Monitoring::where('user_id',Auth::id())
                 ->whereDate('tanggal','=',$id)
@@ -84,7 +86,7 @@ class MobileController extends Controller
                 ->get();
                 $nominal =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime($id)))->sum('nominal');
                 $count =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime($id)))->count();
-                return view('mobile.home',compact('data','nominal','count'));
+                return view('mobile.riwayat',compact('data','nominal','count'));
         }
     }
 
@@ -136,6 +138,88 @@ class MobileController extends Controller
             ]);
         }
         
+    }
+
+    public function getMonitoringHarian(Request $request){
+        $tanggal=$request->tanggal;
+        if(Auth::user()->roles=='admin'){
+            $data =Monitoring::whereDate('tanggal',$tanggal)
+            ->orderBy('tanggal','desc')
+            ->get();
+            $results='';
+            foreach($data as $item){
+                $results.='<a href="'.route('mobile.details',$item->id) .'">
+                <div class="card bg-white my-2 px-4 py-3 flex justify-between rounded-md shadow-sm">
+                    <div>
+                        <h1 class="text-md text-slate-800 font-poppins font-semibold lowercase">'. $item->anggota .'</h1>
+                        <h1 class="text-sm text-slate-800 font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
+                        <div class="flex">
+                            <p class="text-[10px] text-slate-600 font-poppins">
+                                '.  date('d-m-Y',strtotime($item->tanggal)) .' 🕛
+                                '.  date('H:i',strtotime($item->created_at)) .'
+                            </p>
+                            <p class="text-[10px] ml-2 text-slate-600 font-poppins font-semibold lowercase">
+                                <i class="bi bi-pen"></i> '. $item->user->name .'
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-right flex flex-col justify-between">
+                        <h1 class="text-xs text-slate-800 font-poppins font-semibold capitalize">Rp
+                            '. number_format($item->nominal,0,',','.') .'</h1>
+                        <div class="flex items-center">
+                            <a href="'. route('mobile.edit_dok',$item->id) .'"
+                                class="text-sky-500 text-[10px] px-1 tex-xs">Edit</a>
+                            <form action="'. route('mobile.delete',$item->id) .'" method="post" class="inline-flex">
+                            ' . csrf_field() . method_field("DELETE") . '
+                                <button onclick="return confirm(`Are you sure?`)" type="submit"
+                                    class="text-rose-500 text-[10px] px-1 tex-xs">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </a>';
+            }
+            return response()->json($results);
+        }else{
+            $data =Monitoring::where('user_id',Auth::id())
+                ->whereDate('tanggal',$tanggal)
+                ->orderBy('id','desc')
+                ->get();
+                $results='';
+            foreach($data as $item){
+                $results.='<a href="'.route('mobile.details',$item->id) .'">
+                <div class="card bg-white my-2 px-4 py-3 flex justify-between rounded-md shadow-sm">
+                    <div>
+                        <h1 class="text-md text-slate-800 font-poppins font-semibold lowercase">'. $item->anggota .'</h1>
+                        <h1 class="text-sm text-slate-800 font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
+                        <div class="flex">
+                            <p class="text-[10px] text-slate-600 font-poppins">
+                                '.  date('d-m-Y',strtotime($item->tanggal)) .' 🕛
+                                '.  date('H:i',strtotime($item->created_at)) .'
+                            </p>
+                            <p class="text-[10px] ml-2 text-slate-600 font-poppins font-semibold lowercase">
+                                <i class="bi bi-pen"></i> '. $item->user->name .'
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-right flex flex-col justify-between">
+                        <h1 class="text-xs text-slate-800 font-poppins font-semibold capitalize">Rp
+                            '. number_format($item->nominal,0,',','.') .'</h1>
+                        <div class="flex items-center">
+                            <a href="'. route('mobile.edit_dok',$item->id) .'"
+                                class="text-sky-500 text-[10px] px-1 tex-xs">Edit</a>
+                            <form action="'. route('mobile.delete',$item->id) .'" method="post" class="inline-flex">
+                            ' . csrf_field() . method_field("DELETE") . '
+                                <button onclick="return confirm(`Are you sure?`)" type="submit"
+                                    class="text-rose-500 text-[10px] px-1 tex-xs">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </a>';
+            }
+            return response()->json($results);
+        }
     }
     
 }
