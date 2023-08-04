@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('anggota',AnggotaController::class);
     Route::post('/anggota/reset', [AnggotaController::class, 'resetAnggota'])->name('anggota.reset');
     Route::resource('monitoring',MonitoringController::class);
+    Route::post('get-monitoring-harian',[MobileController::class,'getMonitoringHarian'])->name('getMonitoringHarian');
     Route::get('/edit-idanggota-monitoring',[MonitoringController::class,'edit_monitoring_idanggota'])->name('monitoring.edit_idanggota');
     Route::post('monitoring/select-majelis',[MonitoringController::class,'select_majelis'])->name('monitoring.majelis');
     Route::post('monitoring/select-anggota',[MonitoringController::class,'select_anggota'])->name('monitoring.anggota');

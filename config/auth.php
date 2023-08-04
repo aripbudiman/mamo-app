@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'token', // Pastikan menggunakan driver 'token'
+            'provider' => 'users',
+        ],
     ],
 
     /*
