@@ -187,7 +187,36 @@ class MobileController extends Controller
                 ->get();
                 $results='';
             foreach($data as $item){
-                $results.='<h1>Hello World</h1>';
+                $results.='<a href="'.route('mobile.details',$item->id) .'">
+                <div class="card bg-white my-2 px-4 py-3 flex justify-between rounded-md shadow-sm">
+                    <div>
+                        <h1 class="text-md text-slate-800 font-poppins font-semibold lowercase">'. $item->anggota .'</h1>
+                        <h1 class="text-sm text-slate-800 font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
+                        <div class="flex">
+                            <p class="text-[10px] text-slate-600 font-poppins">
+                                '.  date('d-m-Y',strtotime($item->tanggal)) .' 🕛
+                                '.  date('H:i',strtotime($item->created_at)) .'
+                            </p>
+                            <p class="text-[10px] ml-2 text-slate-600 font-poppins font-semibold lowercase">
+                                <i class="bi bi-pen"></i> '. $item->user->name .'
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-right flex flex-col justify-between">
+                        <h1 class="text-xs text-slate-800 font-poppins font-semibold capitalize">Rp
+                            '. number_format($item->nominal,0,',','.') .'</h1>
+                        <div class="flex items-center">
+                            <a href="'. route('mobile.edit_dok',$item->id) .'"
+                                class="text-sky-500 text-[10px] px-1 tex-xs">Edit</a>
+                            <form action="'. route('mobile.delete',$item->id) .'" method="post" class="inline-flex">
+                            ' . csrf_field() . method_field("DELETE") . '
+                                <button onclick="return confirm(`Are you sure?`)" type="submit"
+                                    class="text-rose-500 text-[10px] px-1 tex-xs">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </a>';
             }
             return response()->json($results);
         }
