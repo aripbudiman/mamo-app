@@ -1,4 +1,4 @@
-<footer class="dark:bg-slate-10 absolute bottom-0 inset-x-0 h-20">
+<footer class="dark:bg-slate-10 bg-white z-50 fixed bottom-0 inset-x-0 h-20">
     <div class="grid grid-cols-5 place-items-center">
         <a class="{{ request()->routeIs('mobile.home')  ? 'text-hijau-20 font-semibold' : 'text-gray-500' }} p-4 text-center"
             href="{{ route('mobile.home') }}"><i class="bi bi-house"></i>
