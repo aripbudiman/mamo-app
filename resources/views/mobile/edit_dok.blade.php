@@ -1,7 +1,7 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="flex justify-between p-5 bg-blue-800 text-white shadow-md">
-    <a href="{{  url()->previous() }}"><i class="bi bi-chevron-left fill-blue-800 font-semibold mr-3"></i> Edit
+<header class="flex justify-between p-5 text-hijau-20">
+    <a href="{{  url()->previous() }}" class="font-righteous"><i class="bi bi-chevron-left font-semibold mr-3"></i> Edit
         Dokumentasi</a>
 </header>
 <div class="w-full my-4 px-4">

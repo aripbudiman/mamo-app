@@ -50,7 +50,7 @@
             <input type="date" id="tanggal" name="tanggal"
                 class="py-3 @error('tanggal')
                     border-red-500
-                @enderror px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                @enderror px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-white dark:border-gray-700 dark:text-gray-400">
             @error('tanggal')
             <p class="text-red-500">{{ $message }}</p>
             @enderror
