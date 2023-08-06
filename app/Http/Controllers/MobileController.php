@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anggota;
 use App\Models\User;
 use App\Models\Monitoring;
 use Illuminate\Http\Request;
@@ -22,11 +23,13 @@ class MobileController extends Controller
         if(Auth::user()->roles=='admin'){
             $nominal =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
             $count =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
-            return view('mobile.home');
+            $data=Monitoring::with('user')->orderBy('id','desc')->paginate(10);
+            return view('mobile.home',compact('data'));
         }else{
             $nominal =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
-                $count =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
-            return view('mobile.home');
+            $count =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
+            $data=Monitoring::with('user')->orderBy('id','desc')->paginate(10);
+            return view('mobile.home',compact('data'));
         }
     }
 
@@ -101,7 +104,7 @@ class MobileController extends Controller
             $count=Monitoring::whereBetween('tanggal',[$this->dari,$this->sampai])->count();
             $bisaDitemui=Monitoring::where('ditemui','bisa')->whereBetween('tanggal',[$this->dari,$this->sampai])->count();
             $tidakBisaDitemui=Monitoring::where('ditemui','tidak bisa')->whereBetween('tanggal',[$this->dari,$this->sampai])->count();
-            $polaBayar=Monitoring::groupBy('pola_bayar') ->select('pola_bayar', \DB::raw('count(*) as count'))
+            $polaBayar=Monitoring::whereBetween('tanggal',[$this->dari,$this->sampai])->groupBy('pola_bayar') ->select('pola_bayar', \DB::raw('count(*) as count'))
             ->get();
             $polaBayarKategori=[];
             $countPolaBayar=[];
@@ -121,7 +124,7 @@ class MobileController extends Controller
             $count=Monitoring::where('user_id',Auth::id())->whereBetween('tanggal',[$this->dari,$this->sampai])->count();
             $bisaDitemui=Monitoring::where('user_id',Auth::id())->where('ditemui','bisa')->whereBetween('tanggal',[$this->dari,$this->sampai])->count();
             $tidakBisaDitemui=Monitoring::where('user_id',Auth::id())->where('ditemui','tidak bisa')->whereBetween('tanggal',[$this->dari,$this->sampai])->count();
-            $polaBayar=Monitoring::where('user_id',Auth::id())->groupBy('pola_bayar') ->select('pola_bayar', \DB::raw('count(*) as count'))
+            $polaBayar=Monitoring::where('user_id',Auth::id())->whereBetween('tanggal',[$this->dari,$this->sampai])->groupBy('pola_bayar') ->select('pola_bayar', \DB::raw('count(*) as count'))
             ->get();
             $polaBayarKategori=[];
             $countPolaBayar=[];
@@ -149,7 +152,7 @@ class MobileController extends Controller
             $results='';
             foreach($data as $item){
                 $results.='<a href="'.route('mobile.details',$item->id) .'">
-                <div class="card bg-white my-2 px-4 py-3 flex justify-between rounded-md shadow-sm">
+                <div class="card bg-hijau-10 my-2 px-4 py-3 flex justify-between rounded-md shadow-lg">
                     <div>
                         <h1 class="text-md text-slate-800 font-poppins font-semibold lowercase">'. $item->anggota .'</h1>
                         <h1 class="text-sm text-slate-800 font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
@@ -188,10 +191,10 @@ class MobileController extends Controller
                 $results='';
             foreach($data as $item){
                 $results.='<a href="'.route('mobile.details',$item->id) .'">
-                <div class="card bg-white my-2 px-4 py-3 flex justify-between rounded-md shadow-sm">
+                <div class="card bg-yellow-10 my-2 px-4 py-3 flex justify-between rounded-md shadow-lg">
                     <div>
-                        <h1 class="text-md text-slate-800 font-poppins font-semibold lowercase">'. $item->anggota .'</h1>
-                        <h1 class="text-sm text-slate-800 font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
+                        <h1 class="text-md text-slate-900 font-poppins font-semibold lowercase">'. $item->anggota .'</h1>
+                        <h1 class="text-sm text-slate-900 font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
                         <div class="flex">
                             <p class="text-[10px] text-slate-600 font-poppins">
                                 '.  date('d-m-Y',strtotime($item->tanggal)) .' 🕛
@@ -220,6 +223,13 @@ class MobileController extends Controller
             }
             return response()->json($results);
         }
+    }
+
+
+    public function anggota(){
+        $anggota=Anggota::all();
+        $user=User::where('roles','tpl')->get();
+        return view('mobile.anggota',compact('anggota','user'));
     }
     
 }
