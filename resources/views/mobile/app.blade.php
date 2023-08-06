@@ -6,7 +6,7 @@
 </head>
 
 <body class="antialiased">
-    <div class="w-full h-screen relative bg-blue-100">
+    <div class="w-full h-screen relative bg-white">
         @yield('mobile')
     </div>
 </body>

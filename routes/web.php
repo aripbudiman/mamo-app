@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function(){
     Route::put('/mobile/{monitoring}',[MonitoringController::class,'update_dokumentasi'])->name('monitoring.update_dok');
     Route::get('/mobile/{tgl}/monitoring_hari_ini_tanggal',[MobileController::class,'day'])->name('mobile.day');
     Route::delete('/mobile/delete/{id}',[MobileController::class,'delete'])->name('mobile.delete');
+    Route::get('/mobile/anggota',[MobileController::class,'anggota'])->name('mobile.anggota');
 });
 
 require __DIR__.'/auth.php';
