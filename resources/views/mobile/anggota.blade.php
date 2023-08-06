@@ -1,6 +1,6 @@
 @extends('mobile.app')
 @section('mobile')
-<Header class="h-40">
+<Header class="absolute inset-x-0 top-0 h-40">
     <section class="flex justify-center items-center h-10">
         <h1 class="font-righteous text-xl text-hijau-20">Anggota</h1>
     </section>

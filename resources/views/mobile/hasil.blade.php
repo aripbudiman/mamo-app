@@ -1,6 +1,6 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="flex fixed top-0 inset-x-0 justify-center p-5 text-hijau-20 h-20">
+<header class="flex absolute top-0 inset-x-0 justify-center p-5 text-hijau-20 h-20">
     <a href="{{ route('mobile.home') }}" class="absolute left-0 px-3"><i
             class="bi bi-arrow-left text-xl text-hijau-20 dark:text-slate-100"></i></a>
     <h1 class="font-semibold text-2xl">Capaian</h1>

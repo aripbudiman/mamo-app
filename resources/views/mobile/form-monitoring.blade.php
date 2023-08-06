@@ -1,6 +1,6 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="flex justify-between p-5 bg-blue-800 text-white shadow-md">
+<header class="flex justify-between p-5 bg-hijau-20 text-white shadow-md">
     <a href="{{  route('mobile.home') }}"><i class="bi bi-chevron-left fill-blue-800 font-semibold mr-3"></i> Form
         Monitoring</a>
 </header>
