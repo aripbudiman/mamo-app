@@ -1,13 +1,13 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="flex justify-between p-5 bg-blue-800 text-white shadow-md">
-    <a href="{{  url()->previous() }}"><i class="bi bi-chevron-left fill-blue-800 font-semibold mr-3"></i> Details
+<header class="flex justify-between p-5 bg-hijau-20 text-white">
+    <a href="{{  url()->previous() }}"><i class="bi bi-chevron-left font-semibold mr-3"></i> Details
         Kunjungan PYDB</a>
 </header>
-<div class="bg-blue-800 pt-7 pb-28">
+<div class="bg-hijau-20 pt-7 pb-28">
     <div class="card max-w-full bg-white mx-4 rounded-t-lg flex relative overflow-hidden">
         <div class="w-[95%]">
-            <div class="logo h-36 flex justify-center items-center text-blue-800">
+            <div class="logo h-36 flex justify-center items-center text-hijau-20">
                 <i class="bi bi-camera text-6xl"></i>
                 <p class="text-5xl font-righteous font-bold uppercase">Mamo</p>
             </div>
@@ -27,7 +27,7 @@
                         class="bi bi-check-circle-fill text-green-500"></i>Penagihan</p>
                 <p class="text-sm text-slate-900">{{ $details->anggota }}</p>
                 <p class="text-sm text-slate-900">{{ $details->majelis }}</p>
-                <div class="flex justify-between bg-blue-200 font-semibold py-1 mt-3 px-3 ">
+                <div class="flex justify-between bg-hijau-10 font-semibold py-1 mt-3 px-3 ">
                     <p>Total Bayar</p>
                     <p>Rp{{ number_format($details->nominal,0,',','.') }}</p>
                 </div>
@@ -93,27 +93,27 @@
             </div>
         </div>
         <div class="-bottom-3 absolute flex justify-between w-full px-1">
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-blue-800 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
+            <div class="w-4 h-4 bg-hijau-20 rounded-full"></div>
         </div>
     </div>
 </div>

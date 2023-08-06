@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\api;
 
 use Carbon\Carbon;
+use App\Models\Anggota;
 use App\Models\Monitoring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class MobileController extends Controller
 {
@@ -24,7 +26,7 @@ class MobileController extends Controller
 
         $results='';
         foreach ($monitoringData as $item) {
-            $results.='<div class="btn-tgl px-2 w-8 flex justify-center mx-2 rounded-lg text-center py-2 text-xs bg-yellow-300">
+            $results.='<div class="btn-tgl px-2 w-8 flex justify-center mx-2 rounded-lg text-center py-2 text-xs bg-hijau-10">
             <a onclick="getMonitoringHarian(`'.date('Y-m-d',strtotime($item->tanggal)).'`)">
                 <button type="button">
                     <p class="text-slate-700">'. date('D',strtotime($item->tanggal)).'</p>
@@ -34,6 +36,22 @@ class MobileController extends Controller
         </div>';
         }
         return response()->json($results);
+    }
+
+    public function live_search(Request $request){
+        $query = $request->input('anggota');
+        $data = Anggota::where('nama_anggota', 'LIKE', "%{$query}%")->get();
+        $result='';
+        foreach($data as $d){
+            $result.='<a href="" class="card bg-hijau-10 mx-5 my-4 p-3 rounded-lg block shadow-md border border-hijau-20">
+            <h2 class="lowercase first-letter:uppercase font-poppins font-semibold text-lg text-slate-900">
+                '.$d->nama_anggota .'
+            </h2>
+            <p class="lowercase first-letter:uppercase text-slate-900">'.$d->majelis.'</p>
+        </a>';
+        }
+
+        return response()->json($result);
     }
         
 }
