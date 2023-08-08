@@ -1,7 +1,7 @@
 @extends('mobile.app')
 @section('mobile')
 <header
-    class="bg-gradient-to-tr from-hijau-20 from-50% to-hijau-30 w-full p-5 relative h-60 rounded-b-3xl overflow-hidden">
+    class="bg-gradient-to-tr from-hijau-20 from-50% to-hijau-30 w-full z-50 p-5 fixed box-border h-60 rounded-b-3xl overflow-hidden">
     <section class="flex justify-between z-50">
         <h1 class="font-semibold text-xl text-white dark:text-yellow-20 font-poppins">MyProfile</h1>
         <div>
@@ -38,7 +38,7 @@
             </div>
         </div>
     </section>
-    <section class="flex mt-10">
+    <section class="flex mt-10 box-border">
         <img src="{{ asset(Auth::user()->foto) }}" class="w-24 rounded-full border-4 border-yellow-20">
         <div class="ml-5">
             <h1 class="first-letter:text-4xl text-2xl font-righteous text-white">{{ Auth::user()->sub_name }}</h1>

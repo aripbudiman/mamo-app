@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+
 class MobileController extends Controller
 {
 
@@ -230,6 +232,12 @@ class MobileController extends Controller
         $anggota=Anggota::all();
         $user=User::where('roles','tpl')->get();
         return view('mobile.anggota',compact('anggota','user'));
+    }
+
+    public function detailAnggota(string $id){
+        $result=Monitoring::statistikKunjunganAnggota($id);
+        $anggota=Anggota::where('id_anggota',$id)->get();
+        return view('mobile.detail-anggota',compact('result','anggota'));
     }
     
 }

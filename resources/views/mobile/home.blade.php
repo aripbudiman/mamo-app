@@ -29,7 +29,7 @@
         </ul>
     </section>
 </main>
-<header class="absolute top-0 inset-x-0 h-64">
+<header class="fixed top-0 inset-x-0 h-64">
     <section class="mx-4 my-4 box-border flex justify-between items-center">
         <div class="flex">
             <img class="w-10 rounded-full" src="{{ asset(Auth::user()->foto) }}" alt="" srcset="">
