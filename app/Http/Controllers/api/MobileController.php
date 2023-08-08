@@ -43,7 +43,7 @@ class MobileController extends Controller
         $data = Anggota::where('nama_anggota', 'LIKE', "%{$query}%")->get();
         $result='';
         foreach($data as $d){
-            $result.='<a href="" class="card bg-hijau-10 mx-5 my-4 p-3 rounded-lg block shadow-md border border-hijau-20">
+            $result.='<a href="'. route('mobile.detail_anggota', $d->id_anggota) .'" class="card bg-hijau-10 mx-5 my-4 p-3 rounded-lg block shadow-md border border-hijau-20">
             <h2 class="lowercase first-letter:uppercase font-poppins font-semibold text-lg text-slate-900">
                 '.$d->nama_anggota .'
             </h2>

@@ -26,9 +26,9 @@
 </Header>
 <main class="absolute inset-x-0 bottom-20 top-40 overflow-y-auto">
     <section id="list-anggota">
-
         @foreach ($anggota as $item)
-        <a href="" class="card bg-hijau-10 mx-5 my-4 p-3 rounded-lg block shadow-md border border-hijau-20">
+        <a href="{{ route('mobile.detail_anggota', $item->id_anggota) }}"
+            class="card bg-hijau-10 mx-5 my-4 p-3 rounded-lg block shadow-md border border-hijau-20">
             <h2 class="lowercase first-letter:uppercase font-poppins font-semibold text-lg text-slate-900">
                 {{ $item->nama_anggota }}
             </h2>
