@@ -55,9 +55,9 @@
             <i class="bi bi-display-fill text-3xl text-slate-100 group-active:text-hijau-10"></i>
             <p class="text-xs text-slate-100 group-active:text-hijau-10">Monitoring</p>
         </a>
-        <a href="{{ route('mobile.riwayat') }}" class="text-center group"><i
-                class="bi bi-clock-history text-3xl text-slate-100 group-active:text-hijau-10"></i>
-            <p class="text-xs text-slate-100 group-active:text-hijau-10">Riwayat</p>
+        <a href="{{ route('mobile.cashin') }}" class="text-center group"><i
+                class="bi bi-wallet-fill text-3xl text-slate-100 group-active:text-hijau-10"></i>
+            <p class="text-xs text-slate-100 group-active:text-hijau-10">Cash In</p>
         </a>
     </section>
     <h1 class="text-hijau-20 font-poppins font-bold ml-4 my-3">History</h1>

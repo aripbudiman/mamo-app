@@ -54,21 +54,38 @@ class Monitoring extends Model
         
     }
 
-    public function statistikBulanan(){
-        return DB::table('monitoring')
-        ->select(
-            DB::raw('YEAR(tanggal) AS tahun'),
-            DB::raw('MONTH(tanggal) AS bulan'),
-            DB::raw('SUM(nominal) AS total_nominal'),
-            DB::raw('COUNT(anggota_id) AS kunjungan'),
-            DB::raw('COUNT(CASE WHEN ditemui = "bisa" THEN 1 ELSE NULL END) AS bisa'),
-            DB::raw('COUNT(CASE WHEN ditemui = "tidak bisa" THEN 1 ELSE NULL END) AS tidak_bisa'),
-            DB::raw('COUNT(CASE WHEN nominal = 0 THEN 1 ELSE NULL END) AS tidak_bayar'),
-            DB::raw('COUNT(CASE WHEN nominal > 0 THEN 1 ELSE NULL END) AS bayar')
-        )
-        ->groupBy(DB::raw('YEAR(tanggal), MONTH(tanggal)'))
-        ->orderBy(DB::raw('YEAR(tanggal), MONTH(tanggal)'))
-        ->get();
+    public function statistikBulanan($bulan = null, $tahun = null){
+        $query = DB::table('monitoring')
+            ->select(
+                DB::raw('YEAR(tanggal) AS tahun'),
+                DB::raw('MONTH(tanggal) AS bulan'),
+                DB::raw('SUM(nominal) AS total_nominal'),
+                DB::raw('COUNT(anggota_id) AS kunjungan'),
+                DB::raw('COUNT(CASE WHEN ditemui = "bisa" THEN 1 ELSE NULL END) AS bisa'),
+                DB::raw('COUNT(CASE WHEN ditemui = "tidak bisa" THEN 1 ELSE NULL END) AS tidak_bisa'),
+                DB::raw('COUNT(CASE WHEN nominal = 0 THEN 1 ELSE NULL END) AS tidak_bayar'),
+                DB::raw('COUNT(CASE WHEN nominal > 0 THEN 1 ELSE NULL END) AS bayar')
+            )
+            ->groupBy(DB::raw('YEAR(tanggal), MONTH(tanggal)'))
+            ->orderBy(DB::raw('YEAR(tanggal), MONTH(tanggal)'));
+        if ($bulan !== null && $tahun !== null) {
+            $query->whereYear('tanggal', $tahun)
+                  ->whereMonth('tanggal', $bulan);
+        }
+        return $query->get();
     }
 
+    public static function getUserIncomeSummary($userId=null,$limit=50)
+    {
+         $query=self::select('tanggal')
+            ->selectRaw('SUM(nominal) AS total_pendapatan')
+            ->selectRaw('COUNT(*) AS jumlah_transaksi')
+            ->groupBy('tanggal')
+            ->orderBy('tanggal', 'DESC');
+           if($userId!== null){
+               $query->where('user_id', $userId);
+           } 
+            return $query->limit($limit)->get();
+            
+    }
 }

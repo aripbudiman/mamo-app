@@ -25,12 +25,12 @@ class MobileController extends Controller
         if(Auth::user()->roles=='admin'){
             $nominal =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
             $count =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
-            $data=Monitoring::with('user')->orderBy('id','desc')->paginate(10);
+            $data=Monitoring::with('user')->orderBy('tanggal','desc')->paginate(10);
             return view('mobile.home',compact('data'));
         }else{
             $nominal =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
             $count =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
-            $data=Monitoring::with('user')->orderBy('id','desc')->paginate(10);
+            $data=Monitoring::with('user')->orderBy('tanggal','desc')->paginate(10);
             return view('mobile.home',compact('data'));
         }
     }
@@ -193,7 +193,7 @@ class MobileController extends Controller
                 $results='';
             foreach($data as $item){
                 $results.='<a href="'.route('mobile.details',$item->id) .'">
-                <div class="card bg-yellow-10 my-2 px-4 py-3 flex justify-between rounded-md shadow-lg">
+                <div class="card bg-hijau-10 my-2 px-4 py-3 flex justify-between rounded-md shadow-lg">
                     <div>
                         <h1 class="text-md text-slate-900 font-poppins font-semibold lowercase">'. $item->anggota .'</h1>
                         <h1 class="text-sm text-slate-900 font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
@@ -238,6 +238,16 @@ class MobileController extends Controller
         $result=Monitoring::statistikKunjunganAnggota($id);
         $anggota=Anggota::where('id_anggota',$id)->get();
         return view('mobile.detail-anggota',compact('result','anggota'));
+    }
+
+    public function cashin(){
+        if(Auth::user()->roles =='admin'){
+            $data=Monitoring::getUserIncomeSummary();
+            return view('mobile.cashin',compact('data'));
+        }else{
+            $data=Monitoring::getUserIncomeSummary(Auth::id());
+            return view('mobile.cashin',compact('data'));
+        }
     }
     
 }
