@@ -35,11 +35,9 @@ $month=getMonthList();
 </header>
 <main class="absolute inset-x-0 bottom-20 top-28 overflow-y-auto">
     <div id="list-monitoring-harian" class="px-5 w-full box-border">
-
         @forelse ($data as $item)
         <a href="{{ route('mobile.details',$item->id) }}">
-            <div
-                class="card bg-gradient-to-t from-hijau-30 to bg-blue-700 my-2 px-4 py-3 flex justify-between rounded-md shadow-lg">
+            <div class="card bg-hijau-30 my-2 px-4 py-3 flex justify-between rounded-md shadow-lg">
                 <div>
                     <h1 class="text-md text-slate-900 font-poppins font-semibold lowercase">{{ $item->anggota }}</h1>
                     <h1 class="text-sm text-slate-900 font-poppins font-semibold capitalize">{{ $item->majelis }}</h1>
