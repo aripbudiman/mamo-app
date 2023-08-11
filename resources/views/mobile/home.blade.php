@@ -36,7 +36,8 @@
 
         </div>
         <div>
-            <button class="px-1 rounded-md bg-yellow-20 text-white"><i class="bi bi-plus-lg"></i></button>
+            <a href="{{ route('murabahah.create') }}" class="px-1 rounded-md bg-yellow-20 text-white"><i
+                    class="bi bi-plus-lg"></i></a>
         </div>
     </section>
     <section class="max-w-full flex justify-between items-end text-slate-900 my-4 px-4">
@@ -51,9 +52,9 @@
                 class="bi bi-people-fill text-3xl text-slate-100 group-active:text-hijau-10"></i>
             <p class="text-xs text-slate-100 group-active:text-hijau-10">Anggota</p>
         </a>
-        <a class="border-x-2 border-white/40 text-center group">
+        <a href="{{ route('murabahah.index') }}" class="border-x-2 border-white/40 text-center group">
             <i class="bi bi-display-fill text-3xl text-slate-100 group-active:text-hijau-10"></i>
-            <p class="text-xs text-slate-100 group-active:text-hijau-10">Monitoring</p>
+            <p class="text-xs text-slate-100 group-active:text-hijau-10">Murabahah</p>
         </a>
         <a href="{{ route('mobile.cashin') }}" class="text-center group"><i
                 class="bi bi-wallet-fill text-3xl text-slate-100 group-active:text-hijau-10"></i>

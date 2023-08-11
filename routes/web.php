@@ -69,6 +69,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/mobile/anggota',[MobileController::class,'anggota'])->name('mobile.anggota');
     Route::get('/mobile/detail-anggota/{anggota}',[MobileController::class,'detailAnggota'])->name('mobile.detail_anggota');
     Route::get('/mobile/cashin',[MobileController::class,'cashin'])->name('mobile.cashin');
+    Route::get('/mobile/murabahah',[MobileController::class,'murabahah'])->name('murabahah.index');
+    Route::get('/mobile/murabahah/create',[MobileController::class,'murabahah_create'])->name('murabahah.create');
+    Route::post('/mobile/murabahah',[MobileController::class,'murabahah_store'])->name('murabahah.store');
 });
 
 require __DIR__.'/auth.php';
