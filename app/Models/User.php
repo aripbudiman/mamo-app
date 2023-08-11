@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function monitoring(){
         return $this->hasMany(Monitoring::class);
     }
+
+    public function murabahah(){
+        return $this->hasMany(Murabahah::class);
+    }
 }
