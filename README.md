@@ -1,66 +1,57 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Selamat Datang di Mamo-App
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="/public/images/icons/icon-192x192.png" alt="Logo Mamo-App">
 </p>
+Selamat datang di repositori Mamo-App, sebuah aplikasi inovatif yang dirancang dan dikembangkan oleh Arip Budiman. Mamo-App merupakan solusi canggih untuk mengarsipkan dan menyimpan berbagai bentuk bukti dokumentasi dengan efisien dan terorganisir.
 
-## About Laravel
+#### Tentang Mamo-App
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Mamo-App adalah sebuah platform yang dirancang khusus untuk membantu Anda dalam mengelola dan menyimpan semua jenis dokumentasi yang berkaitan dengan proses murabahah. Selain itu, Mamo-App juga memungkinkan Anda untuk mendokumentasikan kunjungan ke PYDB dengan mudah dan sistematis.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### Mengapa Memilih Mamo-App?
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   Efisiensi Tinggi: Mamo-App memberikan cara yang efisien untuk mengarsipkan dan menyimpan dokumen-dokumen penting Anda. Tidak perlu lagi khawatir tentang kehilangan atau kelalaian dalam mengelola bukti dokumentasi.
 
-## Learning Laravel
+-   Organisasi Sempurna: Dengan Mamo-App, Anda dapat dengan mudah mengelompokkan dokumen-dokumen berdasarkan jenis, tanggal, atau kategori lainnya. Ini membantu Anda menjaga ketertiban dan memudahkan pencarian dokumen di masa depan.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   Aksesibilitas Universal: Aplikasi ini dapat diakses dari mana saja dan kapan saja. Tidak ada lagi keterbatasan akses terhadap dokumen-dokumen penting, bahkan jika Anda berada di luar kantor.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# Cara Mulai
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Klon Repositori Ini:** Mulailah dengan mengklon repositori ini ke komputer Anda menggunakan perintah berikut:
 
-## Laravel Sponsors
+```git
+git clone https://github.com/aripbudiman/mamo-app.git
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2. **Instalasi Dependensi:** Masuk ke direktori proyek dan pasang semua dependensi dengan perintah:
 
-### Premium Partners
+```
+composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+3. **Konfigurasi:** Salin berkas `.env.example` menjadi `.env` dan atur konfigurasi yang diperlukan, termasuk pengaturan database.
+4. **Migrasi Database:** Jalankan migrasi database untuk mempersiapkan struktur tabel yang diperlukan:
 
-## Contributing
+```
+php artisan migrate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. **Mulai Server Lokal:** Jalankan server lokal untuk mengakses aplikasi di browser:
 
-## Code of Conduct
+```
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. **Mulai Mengelola Dokumentasi:** Buka browser dan akses aplikasi Mamo-App. Mulailah mengunggah dan mengelola bukti dokumentasi Anda dengan mudah!
 
-## Security Vulnerabilities
+# Kontribusi
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Jika Anda tertarik untuk berkontribusi pada pengembangan Mamo-App, kami sangat menghargai partisipasi Anda. Silakan kirimkan pull request dengan perubahan atau fitur baru yang Anda ingin tambahkan.
 
-## License
+Terima kasih telah memilih Mamo-App sebagai solusi andal Anda untuk mengarsipkan dan mengelola dokumentasi. Jika Anda memiliki pertanyaan atau masukan, jangan ragu untuk menghubungi kami di _muhamadarifbudiman22@gmail.com_.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Salam,
+Arip Budiman
+Pengembang Mamo-App
