@@ -257,7 +257,7 @@ class MobileController extends Controller
             $data=Murabahah::with('dokumentasi','user')->get();
             return view('mobile.murabahah',compact('data'));
         }else{
-            $data=Dokumentasi::all();
+            $data=Murabahah::with('dokumentasi','user')->get();
             return view('mobile.murabahah',compact('data'));
         }
     }
