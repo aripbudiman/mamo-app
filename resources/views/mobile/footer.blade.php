@@ -14,8 +14,8 @@
             href="{{ route('mobile.hasil') }}"><i class="bi bi-wallet2"></i>
             <p class="text-xs">Hasil</p>
         </a>
-        <a class="{{ request()->routeIs('mobile.profile') ? 'text-hijau-20 font-semibold' : 'text-gray-500' }} p-4 text-center"
-            href="{{ route('mobile.profile') }}"><i class="bi bi-person"></i>
+        <a class="{{ request()->routeIs('profile.index') ? 'text-hijau-20 font-semibold' : 'text-gray-500' }} p-4 text-center"
+            href="{{ route('profile.index') }}"><i class="bi bi-person"></i>
             <p class="text-xs">Profile</p>
         </a>
     </div>

@@ -45,7 +45,7 @@
             <ul class="space-y-1.5">
                 <li>
                     <a class="flex items-center gap-x-3 py-2 px-2.5 bg-blue-600 text-sm text-white rounded-md"
-                        href="{{ url('/dashboard') }}">
+                        href="{{ url('/') }}">
                         <i class="bi bi-speedometer2"></i>
                         Dashboard
                     </a>
@@ -198,9 +198,14 @@
                         Documentation
                     </a></li>
                 <li>
-                    <form action="" method="post">
-                        <i class="bi bi-box-arrow-left"></i>
-                    </form>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit"
+                            class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-md hover:bg-blue-600-300">
+                            <i class="bi bi-box-arrow-left"></i>Logout
+                        </button>
+                </li>
+                </form>
                 </li>
             </ul>
         </nav>

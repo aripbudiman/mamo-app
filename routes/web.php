@@ -3,7 +3,7 @@
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\MobileController;
 use App\Http\Controllers\MonitoringController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\mobile\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mobile\HomeController;
 use App\Http\Controllers\mobile\RiwayatController;
@@ -35,9 +35,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('anggota',AnggotaController::class);
     Route::post('/anggota/reset', [AnggotaController::class, 'resetAnggota'])->name('anggota.reset');
     Route::resource('monitoring',MonitoringController::class);
@@ -57,7 +54,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function(){
     Route::get('/mobile/hasil',[MobileController::class,'hasil'])->name('mobile.hasil');
     Route::get('/mobile/form',[MobileController::class,'form'])->name('mobile.form');
-    Route::get('/mobile/profile',[MobileController::class,'profile'])->name('mobile.profile');
     Route::put('/mobile/{monitoring}',[MonitoringController::class,'update_dokumentasi'])->name('monitoring.update_dok');
     Route::get('/mobile/anggota',[MobileController::class,'anggota'])->name('mobile.anggota');
     Route::get('/mobile/detail-anggota/{anggota}',[MobileController::class,'detailAnggota'])->name('mobile.detail_anggota');
@@ -70,6 +66,7 @@ Route::middleware('auth')->group(function(){
     Route::post('fetch-history-by-date',[RiwayatController::class,'fetchHistoryByDate'])->name('riwayat.fetchHistoryByDate');
     Route::post('fetch-d ates-by-month',[RiwayatController::class,'fetchDatesByMonth'])->name('fetchDatesByMonth'); 
     Route::resource('murabahah',MurabahahController::class);
+    Route::resource('profile',ProfileController::class);
 });
 
 

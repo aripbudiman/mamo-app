@@ -30,13 +30,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
         return redirect()->intended(RouteServiceProvider::HOME);
-        // $agent=new Agent();
-        // if($agent->isMobile()){
-        //     return redirect()->intended(RouteServiceProvider::MOBILE);
-        // }else{
-        //     return redirect()->intended(RouteServiceProvider::HOME);
-        // }
-
     }
 
     /**
