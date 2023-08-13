@@ -4,10 +4,10 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\MobileController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Anggota;
-use App\Models\Monitoring;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\mobile\HomeController;
+use App\Http\Controllers\mobile\RiwayatController;
+use App\Http\Controllers\mobile\MurabahahController;
 use Jenssegers\Agent\Agent;
 
 
@@ -41,7 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('anggota',AnggotaController::class);
     Route::post('/anggota/reset', [AnggotaController::class, 'resetAnggota'])->name('anggota.reset');
     Route::resource('monitoring',MonitoringController::class);
-    Route::post('get-monitoring-harian',[MobileController::class,'getMonitoringHarian'])->name('getMonitoringHarian');
     Route::get('/edit-idanggota-monitoring',[MonitoringController::class,'edit_monitoring_idanggota'])->name('monitoring.edit_idanggota');
     Route::post('monitoring/select-majelis',[MonitoringController::class,'select_majelis'])->name('monitoring.majelis');
     Route::post('monitoring/select-anggota',[MonitoringController::class,'select_anggota'])->name('monitoring.anggota');
@@ -56,22 +55,25 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function(){
-    Route::get('/mobile/home',[MobileController::class,'home'])->name('mobile.home');
-    Route::get('/mobile/riwayat',[MobileController::class,'riwayat'])->name('mobile.riwayat');
     Route::get('/mobile/hasil',[MobileController::class,'hasil'])->name('mobile.hasil');
-    Route::get('/mobile/{details}/details',[MobileController::class,'details'])->name('mobile.details');
     Route::get('/mobile/form',[MobileController::class,'form'])->name('mobile.form');
     Route::get('/mobile/profile',[MobileController::class,'profile'])->name('mobile.profile');
-    Route::get('/mobile/{monitoring}/dokumentasi',[MobileController::class,'edit_dok'])->name('mobile.edit_dok');
     Route::put('/mobile/{monitoring}',[MonitoringController::class,'update_dokumentasi'])->name('monitoring.update_dok');
-    Route::get('/mobile/{tgl}/monitoring_hari_ini_tanggal',[MobileController::class,'day'])->name('mobile.day');
-    Route::delete('/mobile/delete/{id}',[MobileController::class,'delete'])->name('mobile.delete');
     Route::get('/mobile/anggota',[MobileController::class,'anggota'])->name('mobile.anggota');
     Route::get('/mobile/detail-anggota/{anggota}',[MobileController::class,'detailAnggota'])->name('mobile.detail_anggota');
     Route::get('/mobile/cashin',[MobileController::class,'cashin'])->name('mobile.cashin');
-    Route::get('/mobile/murabahah',[MobileController::class,'murabahah'])->name('murabahah.index');
-    Route::get('/mobile/murabahah/create',[MobileController::class,'murabahah_create'])->name('murabahah.create');
-    Route::post('/mobile/murabahah',[MobileController::class,'murabahah_store'])->name('murabahah.store');
 });
+ 
+Route::middleware('auth')->group(function(){
+    Route::resource('home',HomeController::class);
+    Route::resource('riwayat',RiwayatController::class);
+    Route::post('fetch-history-by-date',[RiwayatController::class,'fetchHistoryByDate'])->name('riwayat.fetchHistoryByDate');
+    Route::post('fetch-d ates-by-month',[RiwayatController::class,'fetchDatesByMonth'])->name('fetchDatesByMonth'); 
+    Route::resource('murabahah',MurabahahController::class);
+});
+
+
+
+
 
 require __DIR__.'/auth.php';

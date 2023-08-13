@@ -1,21 +1,11 @@
 @extends('mobile.app')
 @section('mobile')
 <header class="flex fixed z-50 bg-white top-0 inset-x-0 justify-center p-5 text-hijau-20 h-20">
-    <a href="{{ route('mobile.home') }}" class="absolute left-0 px-3"><i
+    <a href="{{ route('home.index') }}" class="absolute left-0 px-3"><i
             class="bi bi-arrow-left text-xl text-hijau-20 dark:text-slate-100"></i></a>
     <h1 class="font-semibold text-2xl">Capaian</h1>
 </header>
 <main class="absolute inset-x-0 inset-y-20 overflow-y-auto">
-    {{-- <div class="grid grid-cols-2 gap-3 px-1 mx-4 my-2">
-        <div class="card bg-rose-500 shadow-md border-2 border-rose-50 p-2 box-border text-center rounded-md w-full">
-            <p class="text-rose-50 font-cairo font-bold">Rupiah</p>
-            <p class="text-rose-50 font-cairo">{{ number_format($nominal,0,',','.') }}</p>
-    </div>
-    <div class="card bg-sky-500 shadow-md border-2 border-sky-50 p-2 box-border text-center rounded-md w-full">
-        <p class="text-sky-50 font-cairo font-bold">Input</p>
-        <p class="text-sky-50 font-cairo">{{ $akun }}</p>
-    </div>
-    </div> --}}
     <div class="grid grid-cols-2 bg-yellow-20 text-center mx-4 my-3 px-4 py-2 rounded-lg shadow-lg shadow-gray-200">
         <div>
             <h1 class="font-righteous text-white">Rupiah</h1>
@@ -30,7 +20,6 @@
         <canvas id="myChart"></canvas>
     </div>
 </main>
-
 @include('mobile.footer')
 <script>
     const kategori = @json($kategori);
