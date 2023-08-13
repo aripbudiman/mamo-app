@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\mobile;
 
-use App\Models\Murabahah;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MurabahahController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+            return view('mobile.profile');
     }
 
     /**
@@ -34,7 +34,7 @@ class MurabahahController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Murabahah $murabahah)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +42,7 @@ class MurabahahController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Murabahah $murabahah)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +50,7 @@ class MurabahahController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Murabahah $murabahah)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +58,7 @@ class MurabahahController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Murabahah $murabahah)
+    public function destroy(string $id)
     {
         //
     }

@@ -1,7 +1,7 @@
 @extends('mobile.app')
 @section('mobile')
 <header class="flex justify-between p-5 bg-hijau-20 text-white shadow-md">
-    <a href="{{  route('mobile.home') }}"><i class="bi bi-chevron-left fill-blue-800 font-semibold mr-3"></i> Form
+    <a href="{{  route('home.index') }}"><i class="bi bi-chevron-left fill-blue-800 font-semibold mr-3"></i> Form
         Monitoring</a>
 </header>
 <div class="w-full px-3 py-3 bg-white">
@@ -150,7 +150,7 @@
                 class="py-3 w-full mb-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
                 Simpan
             </button>
-            <a href="{{ route('mobile.home') }}"
+            <a href="{{ route('home.index') }}"
                 class="py-3 px-4 w-full inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
                 Kembali
             </a>

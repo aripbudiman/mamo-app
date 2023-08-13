@@ -11,7 +11,7 @@ $month=getMonthList();
         <div class="btn-bulan px-2 flex justify-center mx-1 rounded-lg text-center py-2 text-xs bg-hijau-10">
             <a href="#">
                 <button class="flex" type="button"
-                    onclick="getListTanggal(`{{ date('m',strtotime($item)) }}`,'{{ date('Y',strtotime($item)) }}')">
+                    onclick="fetchDatesByMonth(`{{ date('m',strtotime($item)) }}`,'{{ date('Y',strtotime($item)) }}')">
                     <p class="text-slate-10">{{ date('F',strtotime($item)) }}</p>
                     <p class="text-slate-10 font-bold font-poppins ml-2">{{ date('Y',strtotime($item)) }}</p>
                 </button>
@@ -23,7 +23,7 @@ $month=getMonthList();
 
         @foreach ($dates as $date)
         <div class="btn-tgl px-2 w-8 flex justify-center mx-2 rounded-lg text-center py-2 text-xs bg-hijau-10">
-            <a onclick="getMonitoringHarian(`{{date('Y-m-d',strtotime($date))}}`)">
+            <a onclick="fetchHistoryByDate(`{{date('Y-m-d',strtotime($date))}}`)">
                 <button type="button">
                     <p class="text-slate-10">{{ date('D',strtotime($date)) }}</p>
                     <p class="text-slate-10 font-bold font-poppins">{{ date('d',strtotime($date)) }}</p>
@@ -36,7 +36,7 @@ $month=getMonthList();
 <main class="absolute inset-x-0 bottom-20 top-28 overflow-y-auto">
     <div id="list-monitoring-harian" class="px-5 w-full box-border">
         @forelse ($data as $item)
-        <a href="{{ route('mobile.details',$item->id) }}">
+        <a href="{{ route('riwayat.show',$item->id) }}">
             <div class="card bg-hijau-10 my-2 px-4 py-3 flex justify-between rounded-md shadow-lg">
                 <div>
                     <h1 class="text-md text-slate-900 font-poppins font-semibold lowercase">{{ $item->anggota }}</h1>
@@ -55,9 +55,9 @@ $month=getMonthList();
                     <h1 class="text-xs text-slate-900 font-poppins font-semibold capitalize">Rp
                         {{ number_format($item->nominal,0,',','.') }}</h1>
                     <div class="flex items-center">
-                        <a href="{{ route('mobile.edit_dok',$item->id) }}"
+                        <a href="{{ route('riwayat.edit',$item->id) }}"
                             class="text-sky-500 text-[10px] px-1 tex-xs">Edit</a>
-                        <form action="{{ route('mobile.delete',$item->id) }}" method="post" class="inline-flex">
+                        <form action="{{ route('riwayat.destroy',$item->id) }}" method="post" class="inline-flex">
                             @csrf
                             @method('DELETE')
                             <button onclick="return confirm('Are you sure?')" type="submit"
@@ -98,17 +98,18 @@ $month=getMonthList();
         $(this).addClass('bg-yellow-10');
     });
 
-    function getListTanggal(bulan, tahun) {
+    function fetchDatesByMonth(bulan, tahun) {
         $('#list-day').html(`<div class="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-hijau-10 rounded-full"
             role="status" aria-label="loading">
             <span class="sr-only">Loading...</span>
         </div>`);
         $.ajax({
             type: "POST",
-            url: "{{route('getListTanggal')}}",
+            url: "{{route('fetchDatesByMonth')}}",
             data: {
                 bulan: bulan,
-                tahun: tahun
+                tahun: tahun,
+                _token: token
             },
             dataType: "JSON",
             success: function (response) {
@@ -117,11 +118,11 @@ $month=getMonthList();
         });
     }
 
-    function getMonitoringHarian(tanggal) {
+    function fetchHistoryByDate(tanggal) {
         $('#list-monitoring-harian').html(load)
         $.ajax({
             type: "POST",
-            url: "{{route('getMonitoringHarian')}}",
+            url: "{{route('riwayat.fetchHistoryByDate')}}",
             data: {
                 tanggal: tanggal,
                 _token: token
