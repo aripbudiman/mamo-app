@@ -38,60 +38,49 @@
     }
 
 </style>
-<header class="fixed z-50 top-0 inset-x-0 bg-hijau-20 flex justify-center items-center h-20">
+<header class="fixed z-50 top-0 inset-x-0 bg-green-2 flex justify-center items-center h-15">
     <a href="javascript:void(0);" onclick="history.back();"
-        class="left-2 py-1 px-2  absolute text-white p-2 border rounded-md bg-yellow-20"><i
+        class="left-2 py-1 px-2  absolute text-green-2 p-2 border rounded-md bg-white"><i
             class="bi bi-arrow-left"></i></a>
-    <h1 class="font-poppins text-xl text-white">Dokumentasi Murabahah</h1>
+    <h1 class="font-bold text-xl text-white">Beranda Murabahah</h1>
 </header>
-<main class="pt-20">
+<main class="pt-15 pb-15 bg-white">
     @foreach ($data as $item)
-    <swiper-container class="mySwiper relative" init="true">
-        @foreach ($item->dokumentasi as $doc)
-        <swiper-slide class="w-full h-52 overflow-auto touch-pan-y"><img class="w-[150%] max-w-none h-auto"
-                src="{{ asset(str_replace('public', 'storage', $doc->foto)) }}" alt="">
-        </swiper-slide>
-        <p class="absolute bg-white">{{ $item->anggota }}</p>
-        @endforeach
-    </swiper-container>
+    <section class="mb-5">
+        <section class="flex justify-between items-center px-3">
+            <div class="flex gap-x-2 items-center h-15">
+                <img src="{{ asset($item->user->foto) }}" class="w-10 h-10 rounded-full object-cover">
+                <div>
+                    <h1 class="text-xl first-letter:uppercase text-slate-900 font-semibold font-poppins lowercase">
+                        {{ $item->user->sub_name }}
+                    </h1>
+                    <p class="text-[10px] text-slate-500">{{ $item->created_at }}</p>
+                </div>
+            </div>
+            <button class=" p-4 rounded-xl"><i
+                    class="fa-solid fa-ellipsis-vertical text-xl text-slate-800"></i></button>
+        </section>
+        <swiper-container class="mySwiper" pagination="true">
+            @foreach ($item->dokumentasi as $d)
+            <swiper-slide class="h-96"><img class="object-cover"
+                    src="{{ asset(str_replace('public','storage',$d->foto)) }}">
+            </swiper-slide>
+            @endforeach
+        </swiper-container>
+        <section class="">
+            <button class="px-2 py-2"><i class="fa-regular fa-thumbs-up text-xl text-gray-800"></i></button>
+            <button class="px-2 py-2"><i class="fa-regular fa-comment-dots text-xl text-gray-800"></i></button>
+            <button class="px-2 py-2"><i class="fa-regular fa-paper-plane text-xl text-gray-800"></i></button>
+        </section>
+        <section class="px-2">
+            <p class="text-slate-900 font-medium font-poppins inline lowercase">{{ $item->user->sub_name }}
+                <article class="text-slate-700 inline">MBA atas nama {{ $item->anggota.' ' .$item->majelis }}
+                    {{ $item->deskripsi }} {{ number_format($item->nominal,0,',','.') }}.</article>
+            </p>
+        </section>
+    </section>
     @endforeach
 </main>
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"
-    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-
-<script>
-    const swiperEl = document.querySelector('swiper-container')
-
-    const params = {
-        injectStyles: [`
-  .swiper-pagination-bullet {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-    color: #000;
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  .swiper-pagination-bullet-active {
-    color: #fff;
-    background: #007aff;
-  }
-  `],
-        pagination: {
-            clickable: true,
-            renderBullet: function (index, className) {
-                return '<span class="' + className + '">' + (index + 1) + "</span>";
-            },
-        },
-    }
-
-    Object.assign(swiperEl, params)
-
-    swiperEl.initialize();
-
-</script>
 @endsection
+@push('scripts')
+@endpush

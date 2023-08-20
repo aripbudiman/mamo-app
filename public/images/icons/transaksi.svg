@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56" height="56" viewBox="0 0 56 56">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_25" data-name="Rectangle 25" width="56" height="56" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Group_13" data-name="Group 13" clip-path="url(#clip-path)">
+    <path id="Path_38" data-name="Path 38" d="M28,0A28,28,0,1,0,56,28,28.018,28.018,0,0,0,28,0Z" fill="#c6eed7"/>
+    <path id="Path_39" data-name="Path 39" d="M13,35.5a8.318,8.318,0,0,1-6.5-1.3V16.8l6.5-3Z" fill="#fdb47e"/>
+    <path id="Path_40" data-name="Path 40" d="M8.3,19.4H6.5V34.2a8.107,8.107,0,0,0,1.8,1V24.1a7.688,7.688,0,0,0,4.2,1.2V19.4Z" fill="#e48544"/>
+    <path id="Path_41" data-name="Path 41" d="M45.5,14.8h-33V31.3h33Z" fill="#008e3f"/>
+    <path id="Path_42" data-name="Path 42" d="M23.1,19.2c12.1-.2,12-4.4,12-4.4H12.5V25.3C20.8,24.9,23.1,19.2,23.1,19.2Z" fill="#006a2f"/>
+    <path id="Path_43" data-name="Path 43" d="M42.9,14.8H12.5V31.3h33V14.8ZM19.1,28.7a4.366,4.366,0,0,0-3.9-3.9V17.5H39a4.366,4.366,0,0,0,3.9,3.9v7.3Z" fill="#00b14f"/>
+    <path id="Path_44" data-name="Path 44" d="M15.1,24.7V17.4H32.8c2.3-1.2,2.3-2.6,2.3-2.6H12.5V25.3a14.355,14.355,0,0,0,3.1-.5A.9.9,0,0,1,15.1,24.7Z" fill="#008e3f"/>
+    <path id="Path_45" data-name="Path 45" d="M45.5,31.3h-33v9.9h33Z" fill="#008e3f"/>
+    <path id="Path_46" data-name="Path 46" d="M45.5,34.3h-33v.6h33Z" fill="#006a2f"/>
+    <path id="Path_47" data-name="Path 47" d="M45.5,37.6h-33v.6h33Z" fill="#006a2f"/>
+    <path id="Path_48" data-name="Path 48" d="M31.8,14.8H26.3V31.3h5.5Z" fill="#4dc884"/>
+    <path id="Path_49" data-name="Path 49" d="M31.8,31.3H26.3v9.9h5.5Z" fill="#00b14f"/>
+    <path id="Path_50" data-name="Path 50" d="M31.7,17.9V14.8H26.2V19A14.735,14.735,0,0,0,31.7,17.9Z" fill="#00b14f"/>
+    <path id="Path_51" data-name="Path 51" d="M9.1,21c7.3,1.5,12.4-4.4,12.4-4.4s.8.5,6.1.4a8.233,8.233,0,0,0,4.9-1.3c.7-.5.1-1.1-.7-1.3-3.2-.8-10.4-2.8-12.7-3.2-3-.6-12.7,5.2-12.7,5.2v4" fill="#fdb47e"/>
+    <path id="Path_52" data-name="Path 52" d="M6.5,34.8v-18a.945.945,0,0,0-1-1H2.8A27.681,27.681,0,0,0,0,28a28.817,28.817,0,0,0,1.1,7.8H5.5A1,1,0,0,0,6.5,34.8Z" fill="#4b4b4b"/>
+    <path id="Path_53" data-name="Path 53" d="M3,30.5A1.5,1.5,0,1,0,1.5,29,1.5,1.5,0,0,0,3,30.5Z" fill="#fff"/>
+    <path id="Path_54" data-name="Path 54" d="M25.3,38.6a3.465,3.465,0,0,0-1.6.8l-1.4,1a.388.388,0,0,0,.1.7l.6.2h3.3V38.6h-.2A1.1,1.1,0,0,0,25.3,38.6Z" fill="#006a2f"/>
+    <path id="Path_55" data-name="Path 55" d="M44.1,34.4c-2.3.1-6.2.4-7.4.6-1.7.4-2,1.2-1.7,1.7.2.6,2.1,1.2,3.9,1.5h.4l-4,1.8-3.5-.6v1.8H44.6V34.3Z" fill="#006a2f"/>
+    <path id="Path_56" data-name="Path 56" d="M26.8,38.5h-.5v2.7h5.5V39.4Z" fill="#008e3f"/>
+    <path id="Path_57" data-name="Path 57" d="M53.5,32.8c-2.3-.8-6.9.3-8.4.6h-.4s-6.1.3-7.6.6-1.6,1-1.5,1.5c.2.5,1.8,1,3.3,1.2s4.1.4,4.1.4c1.1.1-7.2,4-7.2,4l-7.4-1.3a3.086,3.086,0,0,0-2.6.7l-.6.4a.377.377,0,0,0,.1.6l9.8,2.8a1.7,1.7,0,0,0,.7.1l10.9-1.9a2.845,2.845,0,0,1,1.3,0l3.4.9a27.186,27.186,0,0,0,4-9.6A6.915,6.915,0,0,0,53.5,32.8Z" fill="#fdb47e"/>
+    <path id="Path_58" data-name="Path 58" d="M43.1,37.1c.1.1-.6.5-1.5,1.1h-.1c.3,0,1.1-.2,1.4-.2.7,0,1.3-.2,2.1-.2h1.4a.31.31,0,0,1,.2-.1C45.6,37.5,43.8,37.2,43.1,37.1Z" fill="#e48544"/>
+  </g>
+</svg>

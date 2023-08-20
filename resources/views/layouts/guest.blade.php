@@ -9,7 +9,7 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
         <div>
             <a href="/">
-                <img src="{{ asset('lgoo mamo.png') }}" class="w-48">
+                <img src="{{ asset('logo.png') }}" class="w-20">
             </a>
         </div>
 

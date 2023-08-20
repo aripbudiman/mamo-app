@@ -18,5 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('get-list-tanggal',[MobileController::class,'getListTanggal'])->name('getListTanggal');
+// Route::post('get-list-tanggal',[MobileController::class,'getListTanggal'])->name('getListTanggal');
 Route::post('live_search/anggota',[MobileController::class,'live_search'])->name('live_search.anggota');

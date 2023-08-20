@@ -317,4 +317,5 @@ class MonitoringController extends Controller
 
         return back();
     }
+
 }

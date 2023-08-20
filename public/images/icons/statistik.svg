@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56" height="56" viewBox="0 0 56 56">
+  <defs>
+    <filter id="pie-chart-fill" x="8.986" y="8.986" width="40.014" height="39.014" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur"/>
+      <feFlood flood-color="#484848" flood-opacity="0.502"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_191" data-name="Group 191" transform="translate(-1655 -2447)">
+    <g id="Group_27" data-name="Group 27" transform="translate(1382 2123)">
+      <circle id="Ellipse_17" data-name="Ellipse 17" cx="28" cy="28" r="28" transform="translate(273 324)" fill="rgba(135,2,123,0.2)"/>
+      <g transform="matrix(1, 0, 0, 1, 273, 324)" filter="url(#pie-chart-fill)">
+        <path id="pie-chart-fill-2" data-name="pie-chart-fill" d="M38.013,20.192h-18.5L6.439,33.27A19.023,19.023,0,0,0,38.01,20.192ZM4.757,31.587A19.023,19.023,0,0,1,17.836.015v18.5L4.757,31.589ZM20.214.015v17.8h17.8a19.026,19.026,0,0,0-17.8-17.8Z" transform="translate(8.99 8.97)" fill="#87027b"/>
+      </g>
+    </g>
+  </g>
+</svg>

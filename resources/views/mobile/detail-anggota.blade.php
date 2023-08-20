@@ -1,87 +1,75 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="bg-hijau-20 h-20 fixed z-50 flex justify-center items-center w-full">
+<header class="bg-green-2 h-15 fixed z-50 flex justify-center items-center w-full">
+    <a href="{{  url()->previous() }}"
+        class=" bg-white text-green-2 absolute left-4 flex justify-center w-[30px] h-[30px] shadow-md items-center px-2 py-1 rounded-md inset-y-4"><i
+            class="bi bi-arrow-left"></i></a>
     <h1 class="text-white font-poppins font-semibold">Statistik Kunjungan Anggota</h1>
 </header>
-<main class="absolute inset-x-0 pt-20 pb-20 overflow-y-auto">
-    <div class="overflow-hidden text-center bg-white rounded shadow-md text-slate-500 shadow-slate-200">
-        <div class="p-6">
-            <header class="mb-4">
-                <h3 class="text-xl font-semibold text-slate-700">{{ $anggota[0]['nama_anggota'] }}</h3>
-                <p class=" text-slate-400">{{ $anggota[0]['id_anggota'] }}</p>
-                <p class=" text-slate-400">{{ $anggota[0]['majelis'] }}</p>
-            </header>
+<main class="absolute inset-x-0 pt-15 pb-20 overflow-y-auto">
+    <section class="flex justify-center flex-col items-center m-5">
+        <h1 class="font-poppins font-semibold text-gray-700 text-xl">{{ $anggota[0]['nama_anggota'] }}</h1>
+        <p class=" text-slate-400 font-poppins">{{ $anggota[0]['id_anggota'] }}</p>
+        <p class=" text-slate-400 font-poppins">{{ $anggota[0]['majelis'] }}</p>
+    </section>
+    <section class="grid grid-cols-2 gap-4 m-5">
+        <div class="bg-slate-200 text-center p-2 rounded-md shadow-sm">
+            <h1 class="text-gray-800 font-poppins font-bold">Total Bayar</h1>
+            <p class="text-blue-1 font-semibold">Rp {{ number_format($result['totalBayar'],0,',','.') }}</p>
         </div>
-        <div class="flex flex-col justify-end gap-2 p-6 pt-0">
-            <label class="text-left pl-3" for="bisa-ditemui">Sisa Hutang outstanding</label>
-            <div
-                class="inline-flex items-center justify-start flex-1 h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
-                {{ 'Rp '. number_format($anggota[0]['outstanding'],0,',','.') }}
-                </span>
-            </div>
-            <label class="text-left pl-3" for="bisa-ditemui">Total Bayar</label>
-            <div
-                class="inline-flex items-center justify-start flex-1 h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
-                {{ 'Rp '. number_format($result['totalBayar'],0,',','.') }} / {{ $result['totalKunjungan'] }} Kali
-                Kunjungan
-                </span>
-            </div>
-            <label class="text-left pl-3" for="bisa-ditemui">Total Kunjungan</label>
-            <div
-                class="inline-flex items-center justify-start flex-1 h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
-                {{ $result['totalKunjungan'] }} Kali Kunjungan
-                </span>
-            </div>
+        <div class="bg-slate-200 text-center p-2 rounded-md shadow-sm">
+            <h1 class="text-gray-800 font-poppins font-bold">Outstanding</h1>
+            <p class="text-red-1 font-semibold">Rp {{ number_format($anggota[0]['outstanding'],0,',','.') }}</p>
         </div>
-        @php
-        $persenBisaDitemui=($result['totalKunjungan']!==0) ?
-        round(($result['ditemui'][1]['count']/$result['totalKunjungan'])*100,2) :0;
-        $persenTidakBisaDitemui=($result['totalKunjungan']!==0) ?
-        round(($result['ditemui'][0]['count']/$result['totalKunjungan'])*100,2):0;
-        $persenBayar=($result['totalKunjungan']!==0)?round(($result['countBayar']/$result['totalKunjungan'])*100,2):0;
-        $persenTidakBayar=($result['totalKunjungan']!==0)?
-        round(($result['countTidakBayar']/$result['totalKunjungan'])*100,2) :0;
-        @endphp
-        <div class="flex flex-col justify-end gap-2 px-6 pt-0">
-            <label class="text-left pl-3" for="bisa-ditemui">Bisa ditemui</label>
-            <div class="relative w-full">
-                <label id="p04d-label" for="p04d"
-                    class="absolute top-0 left-0 block w-full mb-0 text-xs text-left pl-4 text-white"><span
-                        class="sr-only">uploading</span>{{ $persenBisaDitemui }}%</label>
-                <progress aria-labelledby="p04d-label" id="p04d" max="100" value="{{ $persenBisaDitemui }}"
-                    class="block w-full overflow-hidden rounded bg-slate-100 [&::-webkit-progress-bar]:bg-slate-100 [&::-webkit-progress-value]:bg-emerald-500 [&::-moz-progress-bar]:bg-emerald-500">
-                    100%</progress>
-            </div>
-            <label class="text-left pl-3" for="tidak-bisa-ditemui">Tidak Bisa ditemui</label>
-            <div class="relative w-full">
-                <label id="p04d-label" for="p04d"
-                    class="absolute top-0 left-0 block w-full mb-0 text-xs text-left pl-4 text-white"><span
-                        class="sr-only">uploading</span>{{ $persenTidakBisaDitemui }}%</label>
-                <progress aria-labelledby="p04d-label" id="p04d" max="100" value="{{ $persenTidakBisaDitemui }}"
-                    class="block w-full overflow-hidden rounded bg-slate-100 [&::-webkit-progress-bar]:bg-slate-100 [&::-webkit-progress-value]:bg-emerald-500 [&::-moz-progress-bar]:bg-emerald-500">
-                    100%</progress>
-            </div>
-
-            <label class="text-left pl-3" for="bayar">Bayar</label>
-            <div class="relative w-full">
-                <label id="p04d-label" for="p04d"
-                    class="absolute top-0 left-0 block w-full mb-0 text-xs text-left pl-4 text-white"><span
-                        class="sr-only">uploading</span>{{ $persenBayar }}%</label>
-                <progress aria-labelledby="p04d-label" id="p04d" max="100" value="{{ $persenBayar }}"
-                    class="block w-full overflow-hidden rounded bg-slate-100 [&::-webkit-progress-bar]:bg-slate-100 [&::-webkit-progress-value]:bg-emerald-500 [&::-moz-progress-bar]:bg-emerald-500">
-                    100%</progress>
-            </div>
-            <label class="text-left pl-3" for="tidak-bayar">Tidak Bayar</label>
-            <div class="relative w-full">
-                <label id="p04d-label" for="p04d"
-                    class="absolute top-0 left-0 block w-full mb-0 text-xs text-left pl-4 text-white"><span
-                        class="sr-only">uploading</span>{{ $persenTidakBayar }}%</label>
-                <progress aria-labelledby="p04d-label" id="p04d" max="100" value="{{ $persenTidakBayar }}"
-                    class="block w-full overflow-hidden rounded bg-slate-100 [&::-webkit-progress-bar]:bg-slate-100 [&::-webkit-progress-value]:bg-emerald-500 [&::-moz-progress-bar]:bg-emerald-500">
-                    100%</progress>
-            </div>
+        <div class="bg-slate-200 text-center p-2 rounded-md col-span-2 shadow-sm">
+            <h1 class="text-gray-800 font-poppins font-bold">Total Kunjungan</h1>
+            <p class="text-pink-500 font-semibold"> {{ $result['totalKunjungan'] }}X Kunjungan</p>
         </div>
-    </div>
+        <div class="bg-slate-200 text-center p-2 rounded-md shadow-sm">
+            <h1 class="text-gray-800 font-poppins font-semibold text-sm">Bisa Ditemui</h1>
+            <p class="text-blue-1 font-bold">{{$result['ditemui'][1]['count']}}</p>
+        </div>
+        <div class="bg-slate-200 text-center p-2 rounded-md shadow-sm">
+            <h1 class="text-gray-800 font-poppins font-semibold text-xs">Tidak Bisa Ditemui</h1>
+            <p class="text-red-1 font-bold">{{$result['ditemui'][0]['count']}}</p>
+        </div>
+        <div class="bg-slate-200 text-center p-2 rounded-md shadow-sm">
+            <h1 class="text-gray-800 font-poppins font-semibold text-sm">Bayar</h1>
+            <p class="text-blue-1 font-bold">{{$result['countBayar']}}</p>
+        </div>
+        <div class="bg-slate-200 text-center p-2 rounded-md shadow-sm">
+            <h1 class="text-gray-800 font-poppins font-semibold text-sm">Tidak Bayar</h1>
+            <p class="text-red-1 font-bold">{{$result['countTidakBayar']}}</p>
+        </div>
+    </section>
+    <section class="mr-5 my-10">
+        <h1 class="text-center font-poppins font-semibold text-xl text-gray-800">5 riwayat Kunjungan</h1>
+        <ul aria-label="Nested user feed" role="feed"
+            class="relative flex flex-col gap-5 py-5 pl-8 before:absolute before:top-0 before:left-8 before:h-full before:border before:-translate-x-1/2 before:border-slate-200 before:border-dashed after:absolute after:top-6 after:left-8 after:bottom-6 after:border after:-translate-x-1/2 after:border-slate-200 ">
+            @foreach ($data as $item)
+            <li role="article" class="relative pl-8 border-b border-slate-300 pb-5">
+                <div class="flex flex-col flex-1 gap-4">
+                    <a href="#"
+                        class="absolute z-10 inline-flex items-center justify-center w-8 h-8 text-white rounded-full -left-4 ring-2 ring-white">
+                        <img src="{{ asset($item->user->foto) }}" alt="user name" title="user name" width="48"
+                            height="48" class="max-w-full rounded-full" />
+                    </a>
+                    <h4
+                        class="flex flex-col items-start text-lg font-medium leading-8 lg:items-center md:flex-row text-slate-700">
+                        <span class="flex-1 lowercase first-letter:uppercase">{{ $item->user->sub_name }}<span
+                                class="text-sm font-normal text-slate-500">
+                            </span></span><span
+                            class="text-sm font-normal text-slate-400">{{ date("d-m-Y",strtotime($item->tanggal)).' 🕒 ' .date('H:i',strtotime($item->created_at))}}</span>
+                    </h4>
+                    <p class=" text-slate-500 lowercase">
+                        {{ $item->anggota . ' '.$item->majelis.' '.$item->ditemui .' ditemui '. $item->kondisi.' '.$item->hasil.' '.number_format($item->nominal,0,',','.') }}
+                    </p>
+                    <img src="{{ asset(str_replace('public','storage',$item->dokumentasi)) }}" class="rounded-xl">
+                </div>
+            </li>
+            @endforeach
+        </ul>
+    </section>
 </main>
 @include('mobile.footer')
 @endsection

@@ -53,4 +53,8 @@ class User extends Authenticatable
     public function murabahah(){
         return $this->hasMany(Murabahah::class);
     }
+
+    public function anggota(){
+        return $this->hasMany(Anggota::class,'petugas','sub_name');
+    }
 }

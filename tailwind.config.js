@@ -13,35 +13,61 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Poppins', ...defaultTheme.fontFamily.sans],
+                figtree: ['Figtree', ...defaultTheme.fontFamily.sans],
                 cairo: ['Cairo', ...defaultTheme.fontFamily.sans],
                 poppins: ['Poppins', ...defaultTheme.fontFamily.sans],
                 righteous: ['Righteous', ...defaultTheme.fontFamily.sans],
             },
+            height: {
+                '15': '60px',
+            },
+            width:{
+                '15':'60px'
+            },
+            padding: {
+                '15': '60px',
+              },
             colors:{
                 slate:{
-                    10:'#272729',
-                    20:'#5C668B',
-                },
-                purple:{
-                    10:'#CAC0FF'
-                },
-                yellow:{
-                    10:'#FDEDB7',
-                    20:'#FFAE58'
+                    1:'#272729',
+                    2:'#5C668B',
+                    3:'#1D1D1D'
                 },
                 green:{
-                    10:'#D8EDF0',
+                    1:'#00B14F',
+                    2:'#008E3F',
+                    3:'#00B14F'
                 },
-                hijau:{
-                    10:'#4CD080',
-                    20:'#105D38',
-                    30:'#0F5533',
-                    40:'#00373E'
+                blue:{
+                    1:'#4834d4',
+                    2:'#37809E',
                 },
-                oren:{
-                    10:'#FFAE58          '
+                sky:{
+                    1:'#0AAFD9'
+                },
+                red:{
+                    1:'#eb4d4b'
                 }
+                // purple:{
+                //     10:'#CAC0FF'
+                // },
+                // yellow:{
+                //     10:'#FDEDB7',
+                //     20:'#FFAE58'
+                // },
+                // green:{
+                //     10:'#D8EDF0',
+                // },
+                // hijau:{
+                //     10:'#4CD080',
+                //     20:'#105D38',
+                //     30:'#0F5533',
+                //     40:'#00373E'
+                // },
+                // oren:{
+                //     10:'#FFAE58          '
+                // }
                 
             }
         },
