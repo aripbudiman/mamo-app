@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56" height="56" viewBox="0 0 56 56">
+  <defs>
+    <filter id="signpost-2-fill" x="13" y="13" width="31.003" height="31.646" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur"/>
+      <feFlood flood-color="#4a4a4a" flood-opacity="0.502"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_23" data-name="Group 23" transform="translate(-274 -242)">
+    <circle id="Ellipse_16" data-name="Ellipse 16" cx="28" cy="28" r="28" transform="translate(274 242)" fill="#d8f2f9"/>
+    <g transform="matrix(1, 0, 0, 1, 274, 242)" filter="url(#signpost-2-fill)">
+      <path id="signpost-2-fill-2" data-name="signpost-2-fill" d="M13.736.99a1.966,1.966,0,0,0-.576,1.39V3.532H3.329A1.966,1.966,0,0,0,1.362,5.5V9.431A1.966,1.966,0,0,0,3.329,11.4H13.16v1.966H4.312a1.966,1.966,0,0,0-1.573.787L.822,16.706a.983.983,0,0,0,0,1.18l1.917,2.556a1.966,1.966,0,0,0,1.573.787H13.16V31.06h3.933V21.229h9.831a1.966,1.966,0,0,0,1.966-1.966V15.33a1.966,1.966,0,0,0-1.966-1.966H17.093V11.4h8.848a1.966,1.966,0,0,0,1.573-.787l1.917-2.556a.983.983,0,0,0,0-1.18L27.514,4.319a1.966,1.966,0,0,0-1.573-.787H17.093V2.38A1.966,1.966,0,0,0,13.736.99Z" transform="translate(12.38 12.59)" fill="#0aafd9"/>
+    </g>
+  </g>
+</svg>

@@ -2,28 +2,34 @@
 
 namespace App\Http\Controllers\mobile;
 
+use Carbon\Carbon;
+use App\Models\Murabahah;
 use App\Models\Monitoring;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
+        $currentMonth = Carbon::now()->format('Y-m');
         if(Auth::user()->roles=='admin'){
-            $nominal =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
+            $nominal = Monitoring::where(DB::raw('MONTH(tanggal)'), '=', Carbon::now()->month)
+                                ->sum('nominal');
             $count =Monitoring::whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
             $data=Monitoring::with('user')->orderBy('tanggal','desc')->paginate(10);
-            return view('mobile.home',compact('data'));
+            $murabahah=Murabahah::with('user','dokumentasi')->orderBy('tanggal','desc')->paginate(10);
+            return view('mobile.home',compact('data','murabahah','nominal'));
         }else{
-            $nominal =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->sum('nominal');
+            $nominal = Monitoring::where('user_id',Auth::id())->where(DB::raw('MONTH(tanggal)'), '=', Carbon::now()->month)
+                                ->sum('nominal');
             $count =Monitoring::where('user_id',Auth::id())->whereDate('tanggal','=',date('Y-m-d',strtotime(today())))->count();
             $data=Monitoring::with('user')->orderBy('tanggal','desc')->paginate(10);
-            return view('mobile.home',compact('data'));
+            $murabahah=Murabahah::with('user','dokumentasi')->orderBy('tanggal','desc')->paginate(10);
+            return view('mobile.home',compact('data','murabahah','nominal'));
         }
     }
 

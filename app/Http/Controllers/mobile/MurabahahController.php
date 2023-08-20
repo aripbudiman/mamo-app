@@ -17,13 +17,8 @@ class MurabahahController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->roles =='admin'){
-            $data=Murabahah::with('dokumentasi','user')->get();
-            return view('mobile.murabahah',compact('data'));
-        }else{
-            $data=Murabahah::with('dokumentasi','user')->get();
-            return view('mobile.murabahah',compact('data'));
-        }
+        $data=Murabahah::with('dokumentasi','user')->get();
+        return view('mobile.murabahah',compact('data'));
     }
 
     /**

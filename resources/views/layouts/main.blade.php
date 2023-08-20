@@ -124,6 +124,12 @@
                                     Import Anggota
                                 </a>
                             </li>
+                            <li>
+                                <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-md hover:bg-blue-600"
+                                    href="{{ route('roadmap.index') }}">
+                                    Import roadmap
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -193,9 +199,9 @@
                     </div>
                 </li>
                 <li><a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-md hover:bg-blue-600-300"
-                        href="javascript:;">
-                        <i class="bi bi-book"></i>
-                        Documentation
+                        href="{{ route('road_maps') }}">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        Road Maps
                     </a></li>
                 <li>
                     <form action="{{ route('logout') }}" method="post">
@@ -212,6 +218,7 @@
     </div>
     <!-- End Sidebar -->
     @yield('main')
+    @stack('scripts')
 </body>
 
 </html>

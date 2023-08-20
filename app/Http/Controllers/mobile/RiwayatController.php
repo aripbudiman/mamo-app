@@ -71,36 +71,32 @@ class RiwayatController extends Controller
             ->get();
             $results='';
             foreach($data as $item){
-                $results.='<a href="'.route('riwayat.show',$item->id) .'">
-                <div class="card bg-hijau-10 my-2 px-4 py-3 flex justify-between rounded-md shadow-lg">
-                    <div>
-                        <h1 class="text-md text-slate-800 font-poppins font-semibold lowercase">'. $item->anggota .'</h1>
-                        <h1 class="text-sm text-slate-800 font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
-                        <div class="flex">
-                            <p class="text-[10px] text-slate-600 font-poppins">
-                                '.  date('d-m-Y',strtotime($item->tanggal)) .' 🕛
-                                '.  date('H:i',strtotime($item->created_at)) .'
-                            </p>
-                            <p class="text-[10px] ml-2 text-slate-600 font-poppins font-semibold lowercase">
-                                <i class="bi bi-pen"></i> '. $item->user->name .'
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text-right flex flex-col justify-between">
-                        <h1 class="text-xs text-slate-800 font-poppins font-semibold capitalize">Rp
-                            '. number_format($item->nominal,0,',','.') .'</h1>
-                        <div class="flex items-center">
-                            <a href="'. route('riwayat.edit',$item->id) .'"
-                                class="text-sky-500 text-[10px] px-1 tex-xs">Edit</a>
-                            <form action="'. route('riwayat.destroy',$item->id) .'" method="post" class="inline-flex">
-                            ' . csrf_field() . method_field("DELETE") . '
-                                <button onclick="return confirm(`Are you sure?`)" type="submit"
-                                    class="text-rose-500 text-[10px] px-1 tex-xs">Delete</button>
-                            </form>
-                        </div>
+                $results.='<div class="card bg-blue-2 px-2 py-2 flex justify-between rounded-xl shadow-lg">
+                <div class="flex items-start justify-center gap-y-1 flex-col">
+                    <h1 class="text-xs first-letter:uppercase text-white font-poppins font-semibold lowercase">
+                        '. $item->anggota .'</h1>
+                    <h1 class="text-[10px] text-white font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
+                    <div class="flex">
+                        <p class="text-[10px] text-white font-poppins">
+                            '.  date('d-m-Y',strtotime($item->tanggal)) .' 🕛
+                            '.  date('H:i',strtotime($item->created_at)) .'
+                        </p>
                     </div>
                 </div>
-            </a>';
+                <div class="w-28">
+                    <div class="card bg-white/90 py-1 px-3 rounded-lg w-full leading-tight">
+                        <div class="flex gap-x-1 justify-start">
+                            <img class="block" src="'.asset('images/icons/dompet-gojek.svg') .'">
+                            <h1 class="font-bold text-[10px] text-gray-800 font-poppins">CashIn</h1>
+                        </div>
+                        <p class="font-semibold font-poppins text-gray-900 text-xs">Rp
+                            '. number_format($item->nominal,0,',','.') .'
+                        </p>
+                        <a href="'. route('riwayat.show',$item->id) .'"
+                            class="text-green-2 hover:text-green-1 font-semibold font-poppins text-xs">Tap Detail</a>
+                    </div>
+                </div>
+            </div>';
             }
             return response()->json($results);
         }else{
@@ -110,36 +106,32 @@ class RiwayatController extends Controller
                 ->get();
                 $results='';
             foreach($data as $item){
-                $results.='<a href="'.route('riwayat.show',$item->id) .'">
-                <div class="card bg-hijau-10 my-2 px-4 py-3 flex justify-between rounded-md shadow-lg">
-                    <div>
-                        <h1 class="text-md text-slate-900 font-poppins font-semibold lowercase">'. $item->anggota .'</h1>
-                        <h1 class="text-sm text-slate-900 font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
-                        <div class="flex">
-                            <p class="text-[10px] text-slate-600 font-poppins">
-                                '.  date('d-m-Y',strtotime($item->tanggal)) .' 🕛
-                                '.  date('H:i',strtotime($item->created_at)) .'
-                            </p>
-                            <p class="text-[10px] ml-2 text-slate-600 font-poppins font-semibold lowercase">
-                                <i class="bi bi-pen"></i> '. $item->user->name .'
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text-right flex flex-col justify-between">
-                        <h1 class="text-xs text-slate-800 font-poppins font-semibold capitalize">Rp
-                            '. number_format($item->nominal,0,',','.') .'</h1>
-                        <div class="flex items-center">
-                            <a href="'. route('riwayat.edit',$item->id) .'"
-                                class="text-sky-500 text-[10px] px-1 tex-xs">Edit</a>
-                            <form action="'. route('riwayat.destroy',$item->id) .'" method="post" class="inline-flex">
-                            ' . csrf_field() . method_field("DELETE") . '
-                                <button onclick="return confirm(`Are you sure?`)" type="submit"
-                                    class="text-rose-500 text-[10px] px-1 tex-xs">Delete</button>
-                            </form>
-                        </div>
+                $results.='<div class="card bg-blue-2 px-2 py-2 flex justify-between rounded-xl shadow-lg">
+                <div class="flex items-start justify-center gap-y-1 flex-col">
+                    <h1 class="text-xs first-letter:uppercase text-white font-poppins font-semibold lowercase">
+                        '. $item->anggota .'</h1>
+                    <h1 class="text-[10px] text-white font-poppins font-semibold capitalize">'. $item->majelis .'</h1>
+                    <div class="flex">
+                        <p class="text-[10px] text-white font-poppins">
+                            '.  date('d-m-Y',strtotime($item->tanggal)) .' 🕛
+                            '.  date('H:i',strtotime($item->created_at)) .'
+                        </p>
                     </div>
                 </div>
-            </a>';
+                <div class="w-28">
+                    <div class="card bg-white/90 py-1 px-3 rounded-lg w-full leading-tight">
+                        <div class="flex gap-x-1 justify-start">
+                            <img class="block" src="'. asset('images/icons/dompet-gojek.svg') .'">
+                            <h1 class="font-bold text-[10px] text-gray-800 font-poppins">CashIn</h1>
+                        </div>
+                        <p class="font-semibold font-poppins text-gray-900 text-xs">Rp
+                            '.number_format($item->nominal,0,',','.') .'
+                        </p>
+                        <a href="'. route('riwayat.show',$item->id) .'"
+                            class="text-green-2 hover:text-green-1 font-semibold font-poppins text-xs">Tap Detail</a>
+                    </div>
+                </div>
+            </div>';
             }
             return response()->json($results);
         }
@@ -156,11 +148,11 @@ class RiwayatController extends Controller
             ->get(['tanggal']);
         $results='';
         foreach ($monitoringData as $item) {
-            $results.='<div class="btn-tgl px-2 w-8 flex justify-center mx-2 rounded-lg text-center py-2 text-xs bg-hijau-10">
+            $results.='<div class="btn-tgl px-2 w-8 flex justify-center mx-2 rounded-lg text-center py-2 text-xs bg-white/90">
             <a onclick="fetchHistoryByDate(`'.date('Y-m-d',strtotime($item->tanggal)).'`)">
                 <button type="button">
-                    <p class="text-slate-700">'. date('D',strtotime($item->tanggal)).'</p>
-                    <p class="text-slate-900 font-bold font-poppins">'. date('d',strtotime($item->tanggal)) .'</p>
+                    <p class="text-green-2">'. date('D',strtotime($item->tanggal)).'</p>
+                    <p class="text-green-2 font-bold font-poppins">'. date('d',strtotime($item->tanggal)) .'</p>
                 </button>
             </a>
         </div>';

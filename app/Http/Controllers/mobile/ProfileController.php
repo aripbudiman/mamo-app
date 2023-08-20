@@ -2,64 +2,73 @@
 
 namespace App\Http\Controllers\mobile;
 
-use App\Http\Controllers\Controller;
+use App\Models\Anggota;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Monitoring;
+use App\Models\Murabahah;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-            return view('mobile.profile');
+        $data=Anggota::getMajelisAnggotaStatsByPetugas(Auth::user()->sub_name);
+        $monitoring=Monitoring::where('user_id',Auth::id())->orderBy('tanggal','desc')->limit(30)->get();
+        $postMonitoring=Monitoring::getTotalPostMonitoringByUser(Auth::id());
+        $postMurabahah=Murabahah::getTotalPostMurabahahByUser(Auth::id());
+        return view('mobile.profile',compact('data','monitoring','postMonitoring','postMurabahah'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+ 
     public function edit(string $id)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        
+    }
+
+    public function getMurabahahInProfilePage(){
+        $data =Murabahah::with('dokumentasi')->where('user_id',Auth::id())->orderBy('tanggal','desc')->limit(30)->get();
+        $result='';
+        foreach ($data as $item) {
+           $result.=' <img src="'. asset(str_replace('public','storage',$item->dokumentasi[0]->foto)).'"
+            class="object-contain self-center bg-gradient-to-t from-green-1 via-emerald-300 to-blue-2 h-full">';
+        }
+        return response()->json($result);
+    }
+
+    public function getMonitoringInProfilePage(){
+        $monitoring=Monitoring::where('user_id',Auth::id())->orderBy('tanggal','desc')->limit(30)->get();
+        $result='';
+        foreach ($monitoring as $item) {
+            $result.='<img src="'. asset(str_replace('public','storage',$item->dokumentasi)) .'"
+            class="object-contain self-center bg-gradient-to-t from-green-1 via-emerald-300 to-blue-2 h-full">';
+        }
+        return response()->json($result);
     }
 }

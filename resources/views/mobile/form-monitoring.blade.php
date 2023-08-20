@@ -1,8 +1,10 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="flex justify-between p-5 bg-hijau-20 text-white shadow-md">
-    <a href="{{  route('home.index') }}"><i class="bi bi-chevron-left fill-blue-800 font-semibold mr-3"></i> Form
-        Monitoring</a>
+<header class="flex relative justify-center p-5 bg-green-2 h-15 text-white shadow-md">
+    <a href="{{  route('home.index') }}"
+        class=" bg-white text-green-2 absolute left-4 flex justify-center w-[30px] h-[30px] shadow-md items-center px-2 py-1 rounded-md inset-y-4"><i
+            class="bi bi-arrow-left"></i></a>
+    <h1 class="font-bold text-xl">Form Monitoring</h1>
 </header>
 <div class="w-full px-3 py-3 bg-white">
     @if (Session::has('success'))
@@ -41,22 +43,22 @@
     </div>
     @endif
 </div>
-<div class="w-full pt-5 pb-20 bg-white">
+<div class="w-full pt-2 pb-20 bg-white">
     <form action="{{ route('monitoring.store') }}" method="post" enctype="multipart/form-data" class="mx-3">
         @csrf
         <div class="mb-3">
-            <label for="tanggal" class="block text-sm font-semibold mb-2 dark:text-white">Tanggal
+            <label for="tanggal" class="block text-sm font-medium mb-2 dark:text-white">Tanggal
                 Kunjungan</label>
             <input type="date" id="tanggal" name="tanggal"
                 class="py-3 @error('tanggal')
                     border-red-500
-                @enderror px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-white dark:border-gray-700 dark:text-gray-400">
+                @enderror px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-white dark:border-gray-700 dark:text-gray-400 placeholder:text-gray-400">
             @error('tanggal')
             <p class="text-red-500">{{ $message }}</p>
             @enderror
         </div>
         <div class="mb-3">
-            <label for="petugas" class="block text-sm font-semibold mb-2 dark:text-white">Petugas</label>
+            <label for="petugas" class="block text-sm font-medium mb-2 dark:text-white">Petugas</label>
             <select id="petugas"
                 class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
                 <option value="">--Pilih Petugas--</option>
@@ -66,7 +68,7 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="majelis" class="block text-sm font-semibold mb-2 dark:text-white">Majelis</label>
+            <label for="majelis" class="block text-sm font-medium mb-2 dark:text-white">Majelis</label>
             <select id="majelis" name="majelis"
                 class="@error('majelis')
                     border-red-500
@@ -77,7 +79,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="anggota" class="block text-sm font-semibold mb-2 dark:text-white">Anggota</label>
+            <label for="anggota" class="block text-sm font-medium mb-2 dark:text-white">Anggota</label>
             <select id="anggota" name="anggota"
                 class="@error('anggota')
                     border-red-500
@@ -88,12 +90,12 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="nominal" class="block text-sm font-semibold mb-2 dark:text-white">Nominal Bayar</label>
+            <label for="nominal" class="block text-sm font-medium mb-2 dark:text-white">Nominal Bayar</label>
             <input type="text" name="nominal" id="nominal"
                 class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
         </div>
         <div class="mb-3">
-            <label for="ditemui" class="block text-sm font-semibold mb-2 dark:text-white">Ditemui</label>
+            <label for="ditemui" class="block text-sm font-medium mb-2 dark:text-white">Ditemui</label>
             <div class="grid grid-cols-2 gap-2">
                 <label for="hs-radio-on-right"
                     class="flex p-3 block w-full bg-white border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
@@ -113,7 +115,7 @@
             </div>
         </div>
         <div class="mb-3">
-            <label for="pola_bayar" class="block text-sm font-semibold mb-2 dark:text-white">Pola Bayar</label>
+            <label for="pola_bayar" class="block text-sm font-medium mb-2 dark:text-white">Pola Bayar</label>
             <select name="pola_bayar" id="pola_bayar"
                 class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
                 <option value="seminggu sekali">seminggu sekali</option>
@@ -124,21 +126,21 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="kondisi" class="block text-sm font-semibold mb-2 dark:text-white">kondisi / situasi
+            <label for="kondisi" class="block text-sm font-medium mb-2 dark:text-white">kondisi / situasi
                 anggota saat ini:</label>
             <textarea name="kondisi" id="kondisi"
                 class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                 rows="3"></textarea>
         </div>
         <div class="mb-3">
-            <label for="hasil" class="block text-sm font-semibold mb-2 dark:text-white">Hasil penagihan atau
+            <label for="hasil" class="block text-sm font-medium mb-2 dark:text-white">Hasil penagihan atau
                 kunjungan ke PYDB:</label>
             <textarea name="hasil" id="hasil"
                 class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                 rows="3"></textarea>
         </div>
         <div class="mb-3">
-            <label for="input-label" class="block text-sm font-semibold mb-2 dark:text-white">Dokumentasi:</label>
+            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Dokumentasi:</label>
             <input type="file" name="dokumentasi" id="dokumentasi" class="block w-full border border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400
                   file:bg-transparent file:border-0
                   file:bg-gray-100 file:mr-4

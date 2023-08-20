@@ -1,0 +1,111 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "User API",
+        "description": "User API for Mamo App",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Arip Budiman",
+            "url": "https://aripbudiman.my.id",
+            "email": "muhamadarifbudiman22@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://{environment}.aripbudiman.my.id/api/v1",
+            "description": "user API server",
+            "variables": {
+                "environment": {
+                    "default": "dev",
+                    "description": "The environment to use",
+                    "enum": [
+                        "dev",
+                        "qa",
+                        "prod"
+                    ]
+                }
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "MyWebsite Arip Budiman",
+        "url": "https://aripbudiman.my.id"
+    },
+    "paths": {
+        "/users": {
+            "get": {
+                "summary": "get all user mamo",
+                "description": "Mengambil daftar semua pengguna yang ada dalam mamo.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "id": 1,
+                                        "name": "user_mamo",
+                                        "sub_name": "USER_MAMO",
+                                        "roles": "tpl",
+                                        "foto": "/foto/user_mamo.jpg"
+                                    },
+                                    {
+                                        "id": 2,
+                                        "name": "user_mamo_2",
+                                        "sub_name": "USER_MAMO_2",
+                                        "roles": "tpl",
+                                        "foto": "/foto/user_mamo_2.jpg"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "includes",
+                        "description": "Include",
+                        "in": "query",
+                        "required": false
+                    }
+                ]
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "summary": "get user detail",
+                "description": "Mengambil informasi detail tentang pengguna berdasarkan ID yang diberikan.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID Pengguna"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 1,
+                                    "username": "contoh_user1",
+                                    "nama_lengkap": "Contoh User Pertama",
+                                    "email": "user1@example.com"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

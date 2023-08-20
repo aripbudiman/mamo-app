@@ -1,9 +1,9 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="flex fixed z-50 bg-white top-0 inset-x-0 justify-center p-5 text-hijau-20 h-20">
-    <a href="javascript:void(0);" onclick="history.back();" class="left-2 py-1 px-2  absolute"><i
-            class="bi bi-arrow-left"></i></a>
-    <h1 class="font-semibold text-2xl">Rekap CashIn Harian</h1>
+<header class="flex fixed z-50 bg-green-2 top-0 inset-x-0 justify-center p-5 text-hijau-20 h-15">
+    <a href="javascript:void(0);" onclick="history.back();" class="left-2 py-1 px-2 rounded-md absolute bg-white"><i
+            class="bi bi-arrow-left text-green-2"></i></a>
+    <h1 class="font-semibold font-poppins text-white text-xl">Rekap CashIn Harian</h1>
 </header>
 @php
 $totalCashin = 0;

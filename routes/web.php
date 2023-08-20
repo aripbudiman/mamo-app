@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mobile\HomeController;
 use App\Http\Controllers\mobile\RiwayatController;
 use App\Http\Controllers\mobile\MurabahahController;
+use App\Http\Controllers\mobile\MonitoringController as Monitoring;
+use App\Http\Controllers\mobile\WilayahController;
+use App\Http\Controllers\RoadMapController;
 use Jenssegers\Agent\Agent;
 
 
@@ -27,7 +30,7 @@ Route::get('/', function () {
     if($agent->isDesktop()){
         return view('welcome');
     }elseif($agent->isMobile()){
-        return redirect()->route('mobile.home');
+        return redirect()->route('home.index');
     }
 })->middleware('auth');
 
@@ -49,11 +52,17 @@ Route::middleware('auth')->group(function () {
     Route::post('import-monitoring', [MonitoringController::class, 'import_monitoring'])->name('monitoring.import');
     Route::get('laporan/monitoring',[MonitoringController::class,'laporan'])->name('laporan.monitoring');
     Route::post('laporan/excel',[MonitoringController::class,'excel'])->name('laporan.excel');
+    Route::resource('roadmap',RoadMapController::class);
+    Route::post('roadmap/import',[RoadMapController::class,'importExcel'])->name('roadmap.import');
+    Route::post('road_map/select_kecamatan',[RoadMapController::class,'selectKecamatan'])->name('road_map.select_kecamatan');
+    Route::post('road_map/select_desa',[RoadMapController::class,'selectDesa'])->name('road_map.select_desa');
+    Route::get('get_road_maps',[RoadMapController::class,'getRoadMaps'])->name('get_road_maps');
+    Route::get('road_maps',[RoadMapController::class,'roadMaps'])->name('road_maps');
 });
 
 Route::middleware('auth')->group(function(){
     Route::get('/mobile/hasil',[MobileController::class,'hasil'])->name('mobile.hasil');
-    Route::get('/mobile/form',[MobileController::class,'form'])->name('mobile.form');
+    Route::get('/mobile/form',[MobileController::class,'createMonitoring'])->name('mobile.form');
     Route::put('/mobile/{monitoring}',[MonitoringController::class,'update_dokumentasi'])->name('monitoring.update_dok');
     Route::get('/mobile/anggota',[MobileController::class,'anggota'])->name('mobile.anggota');
     Route::get('/mobile/detail-anggota/{anggota}',[MobileController::class,'detailAnggota'])->name('mobile.detail_anggota');
@@ -61,12 +70,18 @@ Route::middleware('auth')->group(function(){
 });
  
 Route::middleware('auth')->group(function(){
-    Route::resource('home',HomeController::class);
     Route::resource('riwayat',RiwayatController::class);
+    Route::resource('home',HomeController::class);
     Route::post('fetch-history-by-date',[RiwayatController::class,'fetchHistoryByDate'])->name('riwayat.fetchHistoryByDate');
     Route::post('fetch-d ates-by-month',[RiwayatController::class,'fetchDatesByMonth'])->name('fetchDatesByMonth'); 
     Route::resource('murabahah',MurabahahController::class);
+    Route::get('get-murabahah-in-profile-page/profile',[ProfileController::class,'getMurabahahInProfilePage'])->name('getMurabahahInProfilePage.profile');
+    Route::get('get-monitoring-in-profile-page/profile',[ProfileController::class,'getMonitoringInProfilePage'])->name('getMonitoringInProfilePage.profile');
     Route::resource('profile',ProfileController::class);
+    Route::post('screenshoot/{id}',[MobileController::class,'screenshoot'])->name('screenshoot.screen');
+    Route::get('/settings',[MobileController::class,'settings'])->name('settings');
+    Route::resource('mobilemonitoring',Monitoring::class);
+    Route::resource('wilayah',WilayahController::class);
 });
 
 

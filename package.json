@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.10.5",
-        "preline": "^1.9.0"
+        "preline": "^1.9.0",
+        "puppeteer": "^21.0.3"
     }
 }

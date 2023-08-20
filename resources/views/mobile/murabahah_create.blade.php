@@ -1,12 +1,12 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="fixed h-20 inset-x-0 z-50 top-0 bg-hijau-20 flex justify-center items-center">
+<header class="fixed h-15 inset-x-0 z-50 top-0 bg-green-2 flex justify-center items-center">
     <a href="javascript:void(0);" onclick="history.back();"
-        class="left-2 py-1 px-2  absolute text-white p-2 border rounded-md bg-yellow-20"><i
+        class="bg-white absolute left-4 flex justify-center text-green-2 w-[30px] h-[30px] shadow-md items-center px-2 py-1 rounded-md inset-y-4"><i
             class="bi bi-arrow-left"></i></a>
-    <h1 class="font-poppins text-xl text-white">Form Murabahah</h1>
+    <h1 class="font-bold text-xl text-white">Form Murabahah</h1>
 </header>
-<main class="absolute inset-0 py-20 overflow-y-auto">
+<main class="absolute inset-0 pt-15 pb-20 overflow-y-auto">
     <form action="{{ route('murabahah.store') }}" method="POST" enctype="multipart/form-data" class="p-5">
         @csrf
         <div class="mb-3">
@@ -71,7 +71,7 @@
             <div class="flex justify-between">
                 <label for="dokumentasi" class="block mb-1">Foto Dokumentasi</label>
                 <button type="button" id="tambah-foto"
-                    class="py-1 px-1 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-hijau-20 text-white hover:bg-hijau-20  focus:ring-offset-2 transition-all text-xs dark:focus:ring-offset-gray-800">
+                    class="py-1 px-1 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-green-2 text-white hover:bg-hijau-20  focus:ring-offset-2 transition-all text-xs dark:focus:ring-offset-gray-800">
                     Tambah Foto
                 </button>
             </div>

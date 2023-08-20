@@ -1,22 +1,20 @@
-<footer class="dark:bg-slate-10 bg-white z-50 fixed bottom-0 inset-x-0 h-20">
-    <div class="grid grid-cols-5 place-items-center">
-        <a class="{{ request()->routeIs('home.index')  ? 'text-hijau-20 font-semibold' : 'text-gray-500' }} p-4 text-center"
-            href="{{ route('home.index') }}"><i class="bi bi-house"></i>
-            <p class="text-xs">Beranda</p>
+<footer class="dark:bg-slate-10 bg-white z-50 fixed bottom-0 inset-x-0 h-20 border-t">
+    <div class="grid grid-cols-4 place-items-center">
+        <a class="{{ request()->routeIs('home.index')  ? 'text-green-2 font-semibold h-14 w-14 rounded-full flex justify-center items-center flex-col' : 'text-gray-500' }} p-4 text-center "
+            href="{{ route('home.index') }}"><i class="fa-solid fa-house"></i>
+            <p class="text-xs text-gray-800">Home</p>
         </a>
-        <a class="{{ request()->routeIs('riwayat.index') || request()->routeIs('mobile.day') ? 'text-hijau-20 font-semibold' : 'text-gray-500' }} p-4 text-center"
-            href="{{ route('riwayat.index') }}"><i class="bi bi-receipt-cutoff"></i>
-            <p class="text-xs">Riwayat</p>
+        <a class="{{ request()->routeIs('mobile.anggota') || request()->routeIs('mobile.anggota') ? 'text-green-2 font-semibold h-14 w-14 rounded-full flex justify-center items-center flex-col' : 'text-gray-500' }} p-4 text-center"
+            href="{{ route('mobile.anggota') }}"><i class="fa-solid fa-magnifying-glass"></i>
+            <p class="text-xs text-gray-800">Search</p>
         </a>
-        <a class="p-4 text-center text-hijau-20 bg-hijau-10 rounded-full w-12 h-12 flex justify-center items-center"
-            href="{{ route('mobile.form') }}"><i class="bi bi-camera text-[30px]"></i></a>
-        <a class="{{ request()->routeIs('mobile.hasil') ? 'text-hijau-20 font-semibold' : 'text-gray-500' }} p-4 text-center"
-            href="{{ route('mobile.hasil') }}"><i class="bi bi-wallet2"></i>
-            <p class="text-xs">Hasil</p>
+        <a class="{{ request()->routeIs('mobile.hasil') ? 'text-green-2 font-semibold h-14 w-14 rounded-full flex justify-center items-center flex-col' : 'text-gray-500' }} p-4 text-center"
+            href="{{ route('mobile.hasil') }}"><i class="bi bi-trophy"></i>
+            <p class="text-xs text-gray-800">Capaian</p>
         </a>
-        <a class="{{ request()->routeIs('profile.index') ? 'text-hijau-20 font-semibold' : 'text-gray-500' }} p-4 text-center"
-            href="{{ route('profile.index') }}"><i class="bi bi-person"></i>
-            <p class="text-xs">Profile</p>
+        <a class="{{ request()->routeIs('profile.index') ? 'text-green-2 font-semibold h-14 w-14 rounded-full flex justify-center items-center flex-col' : 'text-gray-500' }} p-4 text-center"
+            href="{{ route('profile.index') }}"><i class="fa-regular fa-user"></i>
+            <p class="text-xs text-gray-800">Profile</p>
         </a>
     </div>
 </footer>

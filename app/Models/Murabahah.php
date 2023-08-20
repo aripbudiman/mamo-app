@@ -19,4 +19,8 @@ class Murabahah extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public static function getTotalPostMurabahahByUser($id){
+        return self::where('user_id',$id)->count();
+    }
 }

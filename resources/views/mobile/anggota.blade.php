@@ -1,39 +1,35 @@
 @extends('mobile.app')
 @section('mobile')
-<Header class="absolute inset-x-0 top-0 h-40">
-    <section class="flex justify-center items-center h-10">
-        <h1 class="font-righteous text-xl text-hijau-20">Anggota</h1>
-    </section>
-    <section class="search px-5 h-[60px] flex items-center">
+<Header class="fixed z-50 inset-x-0 top-0 h-15 bg-green-2">
+    <section class="search px-5 h-15 flex items-center">
         <div class="flex rounded-md shadow-sm w-full relative">
             <input type="text" id="search"
-                class="py-3 px-4 block w-full border-hijau-30 shadow-sm rounded-full text-sm focus:z-10 focus:border-hijau-20 focus:ring-hijau-20 text-hijau-30 bg-hijau-20/10"
-                placeholder="seacrh"><i class="bi bi-search absolute right-4 top-2 text-hijau-20 text-xl"></i>
+                class="py-3 pr-4 pl-8 block foces:pl-4 w-full shadow-sm rounded-md text-sm focus:z-10 focus:border-green-1 focus:ring-gray-200 bg-gray-200"
+                placeholder="seacrh"><i class="bi bi-search absolute z-50 p-2 text-gray-600 text-lg"></i>
         </div>
     </section>
-    <section class="flex justify-around items-center h-[60px]">
-        @foreach ($user as $item)
-        <a href="#"
-            class="relative inline-flex items-center justify-center w-10 h-10 text-lg text-white rounded-full bg-emerald-500">
-            <img src="{{ asset($item->foto) }}" class="rounded-full">
-            <span
-                class="absolute top-0 right-0 inline-flex items-center justify-center gap-1 p-1 text-sm text-white bg-pink-500 border-2 border-white rounded-full">
-                <span class="sr-only"> 7 new emails </span>
-            </span>
-        </a>
-        @endforeach
-    </section>
 </Header>
-<main class="absolute inset-x-0 bottom-20 top-40 overflow-y-auto">
-    <section id="list-anggota">
+<main class="absolute inset-x-0 pb-20 pt-15 overflow-y-auto">
+    <section id="list-anggota" class="m-5">
         @foreach ($anggota as $item)
-        <a href="{{ route('mobile.detail_anggota', $item->id_anggota) }}"
-            class="card bg-hijau-10 mx-5 my-4 p-3 rounded-lg block shadow-md border border-hijau-20">
-            <h2 class="lowercase first-letter:uppercase font-poppins font-semibold text-lg text-slate-900">
-                {{ $item->nama_anggota }}
-            </h2>
-            <p class="lowercase first-letter:uppercase text-slate-900">{{ $item->majelis }}</p>
-        </a>
+        <div class="w-full flex gap-x-3 mb-8">
+            <div class="">
+                <img src="{{ asset($item->user->foto) }}" class="w-16 rounded-full block">
+                <p class="text-xs text-center text-gray-800 first-letter:uppercase">{{ $item->user->name }}</p>
+            </div>
+            <div class="border-b border-gray-400 flex justify-between gap-x-5 w-full">
+                <div>
+                    <h1 class="text-sm text-gray-800 lowercase first-letter:uppercase">
+                        {{ $item->nama_anggota }}</h1>
+                    <h2 class="text-sm text-gray-800 lowercase first-letter:uppercase">{{ $item->majelis }}</h2>
+                    <p class="text-xs">Rp {{ number_format($item->monitoring_sum_nominal,0,',','.') }}</p>
+                </div>
+                <div>
+                    <a href="{{ route('mobile.detail_anggota', $item->id_anggota) }}"
+                        class="text-xs border border-gray-500 px-2 py-1 rounded-lg">Detail</a>
+                </div>
+            </div>
+        </div>
         @endforeach
     </section>
 </main>
