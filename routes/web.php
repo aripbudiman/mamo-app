@@ -10,6 +10,7 @@ use App\Http\Controllers\mobile\RiwayatController;
 use App\Http\Controllers\mobile\MurabahahController;
 use App\Http\Controllers\mobile\MonitoringController as Monitoring;
 use App\Http\Controllers\mobile\WilayahController;
+use App\Http\Controllers\mobile\StatistikController;
 use App\Http\Controllers\RoadMapController;
 use Jenssegers\Agent\Agent;
 
@@ -66,6 +67,9 @@ Route::middleware('auth')->group(function(){
     Route::put('/mobile/{monitoring}',[MonitoringController::class,'update_dokumentasi'])->name('monitoring.update_dok');
     Route::get('/mobile/anggota',[MobileController::class,'anggota'])->name('mobile.anggota');
     Route::get('/mobile/detail-anggota/{anggota}',[MobileController::class,'detailAnggota'])->name('mobile.detail_anggota');
+    Route::get('/mobile/anggota_keluar/{id}',[AnggotaController::class,'anggota_keluar'])->name('mobile.anggota_keluar');
+    Route::post('/mobile/store_anggota_keluar',[AnggotaController::class,'store_anggota_keluar'])->name('mobile.store_anggota_keluar');
+    Route::get('/mobile/mutasi_keluar',[AnggotaController::class,'mutasi_keluar'])->name('mobile.mutasi_keluar');
     Route::get('/mobile/cashin',[MobileController::class,'cashin'])->name('mobile.cashin');
 });
  
@@ -82,10 +86,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/settings',[MobileController::class,'settings'])->name('settings');
     Route::resource('mobilemonitoring',Monitoring::class);
     Route::resource('wilayah',WilayahController::class);
+    Route::resource('par',StatistikController::class);
 });
-
-
-
 
 
 require __DIR__.'/auth.php';

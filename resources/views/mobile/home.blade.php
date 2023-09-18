@@ -75,29 +75,45 @@
         </div>
     </section>
     <section class="m-5 grid grid-cols-3 gap-5">
-        <a href="{{ route('murabahah.index') }}" class="justify-self-center group">
-            <img class="ml-1 group-hover:opacity-80" src="{{ asset('images/icons/transaksi.svg') }}">
-            <p class="text-center mt-1 text-xs">Murabahah</p>
+        <a href="{{ route('murabahah.index') }}" class="justify-self-center flex flex-col justify-center items-center">
+            <img class="w-15" src="{{ asset('images/icons/transaksi.svg') }}">
+            <p class="text-center mt-2 text-xs">Murabahah</p>
         </a>
-        <a href="{{ route('wilayah.index') }}" class="justify-self-center">
-            <img src="{{ asset('images/icons/map-pin.svg') }}" alt="">
-            <p class="text-center mt-1 text-xs">Wilayah</p>
+        <a href="{{ route('wilayah.index') }}" class="justify-self-center flex flex-col justify-center items-center">
+            <img class="w-15" src="{{ asset('images/icons/map-pin.svg') }}" alt="">
+            <p class="text-center mt-2 text-xs">Wilayah</p>
         </a>
-        <a href="{{ route('mobile.cashin') }}" class="justify-self-center rounded-full group">
-            <img class="group-hover:opacity-80" src="{{ asset('images/icons/dompet.svg') }}" alt="">
-            <p class="text-center mt-1 text-xs">CashIn</p>
+        <a href="{{ route('mobile.cashin') }}" class="justify-self-center flex flex-col justify-center items-center">
+            <img class="w-15" src="{{ asset('images/icons/dompet.svg') }}" alt="">
+            <p class="text-center mt-2 text-xs">CashIn</p>
         </a>
-        <a href="{{ route('mobile.anggota') }}" class="justify-self-center">
-            <img src="{{ asset('images/icons/user.svg') }}">
-            <p class="text-center mt-1 text-xs">Anggota</p>
+        <a href="{{ route('mobile.anggota') }}" class="justify-self-center flex flex-col justify-center items-center">
+            <img class="w-15" src="{{ asset('images/icons/user.svg') }}">
+            <p class="text-center mt-2 text-xs">Anggota</p>
         </a>
-        <a href="{{ route('mobilemonitoring.index') }}" class="justify-self-center">
-            <img src="{{ asset('images/icons/thread.svg') }}">
-            <p class="text-center mt-1 text-xs">Monitoring</p>
+        <a href="{{ route('mobilemonitoring.index') }}"
+            class="justify-self-center flex flex-col justify-center items-center">
+            <img class="w-15" src="{{ asset('images/icons/thread.svg') }}">
+            <p class="text-center mt-2 text-xs">Monitoring</p>
         </a>
-        <a class="justify-self-center">
-            <img src="{{ asset('images/icons/statistik.svg') }}">
-            <p class="text-center mt-1 text-xs">Statistik</p>
+        <a href="{{ route('par.index') }}"
+            class="justify-self-center icon-toggle hidden flex flex-col justify-center items-center">
+            <img class="w-15" src="{{ asset('images/icons/statistik.svg') }}">
+            <p class="text-center mt-2 text-xs">Statistik</p>
+        </a>
+        <a href="{{ route('mobile.mutasi_keluar') }}"
+            class="justify-self-center icon-toggle hidden flex flex-col justify-center items-center">
+            <img class="w-15" src="{{ asset('images/icons/anggota-keluar.svg') }}">
+            <p class="text-center mt-2 text-xs">Mutasi Keluar</p>
+        </a>
+        <a href="{{ route('mobilemonitoring.index') }}"
+            class="justify-self-center flex flex-col justify-center icon-toggle hidden items-center">
+            <img class="w-15" src="{{ asset('images/icons/target.svg') }}">
+            <p class="text-center mt-2 text-xs">Target Eksekusi</p>
+        </a>
+        <a id="toggle-more" class="justify-self-center flex flex-col justify-center items-center">
+            <img class="w-15" src="{{ asset('images/icons/more.svg') }}">
+            <p class="text-center mt-2 text-xs">More</p>
         </a>
     </section>
     <section class="m-5 mt-10">
@@ -214,6 +230,15 @@
     Object.assign(swiperEl, params)
 
     swiperEl.initialize();
+
+
+    const toggleMore = document.querySelector('#toggle-more')
+    const iconToggle = document.querySelectorAll('.icon-toggle')
+    toggleMore.addEventListener('click', () => {
+        iconToggle.forEach(el => {
+            el.classList.toggle('hidden')
+        })
+    })
 
 </script>
 @endpush

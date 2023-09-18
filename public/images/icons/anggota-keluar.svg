@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56" height="56" viewBox="0 0 56 56">
+  <defs>
+    <filter id="user-xmark-solid" x="11" y="10" width="37.306" height="30.851" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur"/>
+      <feFlood flood-color="#693a4e" flood-opacity="0.639"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="anggota-keluar" transform="translate(-1693 -2232)">
+    <circle id="Ellipse_17" data-name="Ellipse 17" cx="28" cy="28" r="28" transform="translate(1693 2232)" fill="#fbcfe8"/>
+    <g transform="matrix(1, 0, 0, 1, 1693, 2232)" filter="url(#user-xmark-solid)">
+      <path id="user-xmark-solid-2" data-name="user-xmark-solid" d="M5.6,7.463a7.463,7.463,0,1,1,7.463,7.463A7.463,7.463,0,0,1,5.6,7.463ZM0,28.12a10.393,10.393,0,0,1,10.4-10.4h5.329a10.393,10.393,0,0,1,10.4,10.4,1.732,1.732,0,0,1-1.732,1.732H1.732A1.732,1.732,0,0,1,0,28.12ZM27.461,8.337a1.394,1.394,0,0,1,1.976,0l2.74,2.74,2.74-2.74a1.4,1.4,0,0,1,1.976,1.976l-2.74,2.74,2.74,2.74a1.4,1.4,0,0,1-1.976,1.976l-2.74-2.74-2.74,2.74a1.4,1.4,0,0,1-1.976-1.976l2.74-2.74-2.74-2.74A1.394,1.394,0,0,1,27.461,8.337Z" transform="translate(11 10)" fill="#be185d"/>
+    </g>
+  </g>
+</svg>

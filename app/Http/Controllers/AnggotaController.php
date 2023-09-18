@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Anggota;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use Illuminate\Validation\Rule;
+use App\Models\AnggotaKeluar;
+use Illuminate\Support\Facades\Auth;
 
 class AnggotaController extends Controller
 {
@@ -131,5 +135,53 @@ class AnggotaController extends Controller
         return response()->json($results);
     }
 
+    public function anggota_keluar($id){
+        $anggota = Anggota::where('id_anggota',$id)->get();
+        return view('mobile.anggota-keluar',compact('anggota'));
+    }
+
+    public function store_anggota_keluar(Request $request){
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg',
+            'nama_anggota' => 'required',
+            'tanggal' => 'required',
+            'majelis' => 'required',
+            'alesan' => 'required',
+        ]);
+    DB::beginTransaction();
+    try {
+        $harian=date('d-m-Y',strtotime($request->tanggal));
+        $folderPath = storage_path('app/public/anggota_keluar/' . $harian);
+        if (!file_exists($folderPath)) {
+            mkdir($folderPath, 0777, true);
+        }
+        $tanggal=date('d_F_Y',strtotime($request->tanggal));
+        $majelis=$request->majelis;
+        $nama=$request->nama_anggota;
+        $ext= $request->image->getClientOriginalExtension();
+        $alesan=$request->alesan;
+        $newName=time().$tanggal.'@'.$majelis.'@'.$nama.'.'.$ext;
+        $path=$request->image->storeAs('public/anggota_keluar/'.$harian, $newName);
+        AnggotaKeluar::create([
+            'image'=>$newName,
+            'nama_anggota'=>$nama,
+            'majelis'=>$majelis,
+            'alesan'=>$alesan,
+            'tanggal'=>$request->tanggal,
+            'image'=>$path,
+            'user_id'=>Auth::id()
+        ]);
+        DB::commit();
+        return redirect()->route('mobile.anggota')->with('success', 'Data berhasil diimpor dari file Excel.');
+    } catch (\Throwable $th) {
+        return $th;
+       DB::rollback();
+    }
     
+    }
+
+    public function mutasi_keluar(){
+        $data=AnggotaKeluar::with('user')->orderBy('id','desc')->limit(20)->get();
+        return view('mobile.mutasi-keluar',compact('data'));
+    }
 }

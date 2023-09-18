@@ -30,8 +30,8 @@
             data.forEach(data => {
                 L.marker([data.latitude, data.longitude], {
                     icon: L.icon({
-                        iconUrl: 'images/home2.png',
-                        iconSize: [20, 20],
+                        iconUrl: 'images/home3.png',
+                        iconSize: [30, 30],
                         iconAnchor: [16, 32],
                         popupAnchor: [0, -32]
                     })
@@ -41,6 +41,22 @@
         .catch(error => {
             console.error('Error fetching data:', error);
         });
+
+
+    $.getJSON("/geojson/map.geojson", function (json) {
+        geoLayer = L.geoJSON(json, {
+            style: function (feature) {
+                return {
+                    color: 'blue',
+                    weight: 2,
+                    fillOpacity: 0.5
+                };
+            },
+            onEachFeature: function (feature, layer) {
+                layer.addTo(map);
+            }
+        }).addTo(map);
+    });
 
 </script>
 @endpush

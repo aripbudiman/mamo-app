@@ -23,7 +23,8 @@ class MonitoringController extends Controller
      */
     public function index()
     {
-        $monitoring=Monitoring::orderBy('id','desc')->get();
+        $monitoring=Monitoring::with('user')->orderBy('id','desc')->paginate(21);
+        // return $monitoring;
         return view('monitoring.list-monitoring-pydb',compact('monitoring'));
     }
 
