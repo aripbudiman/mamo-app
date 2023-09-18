@@ -43,21 +43,24 @@ class MobileController extends Controller
         $data = Anggota::where('nama_anggota', 'LIKE', "%{$query}")->orWhere('majelis', 'LIKE', "%{$query}")->get();
         $result='';
         foreach($data as $item){
-            $result.=' <div class="w-full flex gap-x-3 mb-8">
+            $result.='  <div class="w-full flex gap-x-3 mb-8">
             <div class="">
-                <img src="'.asset($item->user->foto) .'" class="w-16 rounded-full block">
+                <img src="'. asset($item->user->foto) .'" class="w-16 rounded-full block">
                 <p class="text-xs text-center text-gray-800 first-letter:uppercase">'. $item->user->name .'</p>
             </div>
             <div class="border-b border-gray-400 flex justify-between gap-x-5 w-full">
                 <div>
                     <h1 class="text-sm text-gray-800 lowercase first-letter:uppercase">
-                        '.$item->nama_anggota .'</h1>
-                    <h2 class="text-sm text-gray-800 lowercase first-letter:uppercase">'. $item->majelis .'</h2>
+
+                        '. $item->nama_anggota .'</h1>
+                    <h2 class="text-sm text-gray-800 lowercase first-letter:uppercase">'. $item->majelis.' </h2>
                     <p class="text-xs">Rp '. number_format($item->monitoring_sum_nominal,0,',','.') .'</p>
                 </div>
-                <div>
-                    <a href="'.route('mobile.detail_anggota', $item->id_anggota) .'"
-                        class="text-xs border border-gray-500 px-2 py-1 rounded-lg">Detail</a>
+                <div class="flex flex-col gap-y-3">
+                    <a href="'. route('mobile.detail_anggota', $item->id_anggota) .'"
+                        class="text-xs border border-green-500 bg-green-300 text-green-900 px-2 py-1 rounded-lg">Detail</a>
+                    <a href="'. route('mobile.anggota_keluar', $item->id_anggota) .'"
+                        class="text-xs border border-red-500 bg-red-300 text-red-900 px-2 py-1 rounded-lg">Keluar</a>
                 </div>
             </div>
         </div>';
