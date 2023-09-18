@@ -40,15 +40,27 @@ class MobileController extends Controller
 
     public function live_search(Request $request){
         $query = $request->input('anggota');
-        $data = Anggota::where('nama_anggota', 'LIKE', "%{$query}%")->get();
+        $data = Anggota::where('nama_anggota', 'LIKE', "%{$query}")->orWhere('majelis', 'LIKE', "%{$query}")->get();
         $result='';
-        foreach($data as $d){
-            $result.='<a href="'. route('mobile.detail_anggota', $d->id_anggota) .'" class="card bg-hijau-10 mx-5 my-4 p-3 rounded-lg block shadow-md border border-hijau-20">
-            <h2 class="lowercase first-letter:uppercase font-poppins font-semibold text-lg text-slate-900">
-                '.$d->nama_anggota .'
-            </h2>
-            <p class="lowercase first-letter:uppercase text-slate-900">'.$d->majelis.'</p>
-        </a>';
+        foreach($data as $item){
+            $result.=' <div class="w-full flex gap-x-3 mb-8">
+            <div class="">
+                <img src="'.asset($item->user->foto) .'" class="w-16 rounded-full block">
+                <p class="text-xs text-center text-gray-800 first-letter:uppercase">'. $item->user->name .'</p>
+            </div>
+            <div class="border-b border-gray-400 flex justify-between gap-x-5 w-full">
+                <div>
+                    <h1 class="text-sm text-gray-800 lowercase first-letter:uppercase">
+                        '.$item->nama_anggota .'</h1>
+                    <h2 class="text-sm text-gray-800 lowercase first-letter:uppercase">'. $item->majelis .'</h2>
+                    <p class="text-xs">Rp '. number_format($item->monitoring_sum_nominal,0,',','.') .'</p>
+                </div>
+                <div>
+                    <a href="'.route('mobile.detail_anggota', $item->id_anggota) .'"
+                        class="text-xs border border-gray-500 px-2 py-1 rounded-lg">Detail</a>
+                </div>
+            </div>
+        </div>';
         }
 
         return response()->json($result);

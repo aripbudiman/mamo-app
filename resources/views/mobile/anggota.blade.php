@@ -24,9 +24,12 @@
                     <h2 class="text-sm text-gray-800 lowercase first-letter:uppercase">{{ $item->majelis }}</h2>
                     <p class="text-xs">Rp {{ number_format($item->monitoring_sum_nominal,0,',','.') }}</p>
                 </div>
-                <div>
+                <div class="flex flex-col gap-y-3">
                     <a href="{{ route('mobile.detail_anggota', $item->id_anggota) }}"
-                        class="text-xs border border-gray-500 px-2 py-1 rounded-lg">Detail</a>
+                        class="text-xs border border-green-500 bg-green-300 text-green-900 px-2 py-1 rounded-lg">Detail</a>
+                    <a href="{{ route('mobile.anggota_keluar', $item->id_anggota) }}"
+                        class="text-xs border border-red-500 bg-red-300 text-red-900 px-2 py-1 rounded-lg">Keluar</a>
+
                 </div>
             </div>
         </div>

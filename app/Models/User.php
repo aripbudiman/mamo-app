@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function anggota(){
         return $this->hasMany(Anggota::class,'petugas','sub_name');
     }
+
+    public function mutasi(){
+        return $this->hasMany(AnggotaKeluar::class);
+    }
 }
