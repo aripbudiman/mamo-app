@@ -1,4 +1,4 @@
-<footer class="dark:bg-slate-10 bg-white z-50 fixed bottom-0 inset-x-0 h-20 border-t">
+<footer class="dark:bg-slate-10 bg-white z-50 fixed bottom-0 w-full lg:w-96 h-20 border-t">
     <div class="grid grid-cols-4 place-items-center">
         <a class="{{ request()->routeIs('home.index')  ? 'text-green-2 font-semibold h-14 w-14 rounded-full flex justify-center items-center flex-col' : 'text-gray-500' }} p-4 text-center "
             href="{{ route('home.index') }}"><i class="fa-solid fa-house"></i>

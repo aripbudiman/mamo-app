@@ -1,6 +1,6 @@
 @extends('mobile.app')
 @section('mobile')
-<Header class="fixed z-50 inset-x-0 top-0 h-15 bg-green-2">
+<Header class="fixed z-50 w-full lg:w-96 top-0 h-15 bg-green-2">
     <section class="search px-5 h-15 flex items-center">
         <div class="flex rounded-md shadow-sm w-full relative">
             <input type="text" id="search"
@@ -9,7 +9,7 @@
         </div>
     </section>
 </Header>
-<main class="absolute inset-x-0 pb-20 pt-15 overflow-y-auto">
+<main class="absolute inset-x-0 pb-20 pt-15 overflow-y-auto bg-white">
     <section id="list-anggota" class="m-5">
         @foreach ($anggota as $item)
         <div class="w-full flex gap-x-3 mb-8">

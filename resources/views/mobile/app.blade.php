@@ -5,8 +5,8 @@
     @include('link')
 </head>
 
-<body class="antialiased">
-    <div class="w-full h-screen relative bg-white">
+<body class="antialiased bg-slate-800">
+    <div class="w-full lg:w-96 mx-auto min-h-screen relative bg-white">
         @yield('mobile')
     </div>
     <script src="{{asset('assets/swiper-element-bundle.min.js')}}"></script>

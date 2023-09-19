@@ -1,6 +1,6 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="h-15 fixed inset-x-0 top-0 bg-green-2 z-50 flex items-center">
+<header class="h-15 fixed w-full lg:w-96 top-0 bg-green-2 z-50 flex items-center">
     <a href="javascript:void(0);" onclick="history.back();"
         class="left-2 py-1 px-2 ml-5 text-green-2 p-2 border rounded-md bg-white"><i class="bi bi-arrow-left"></i></a>
     <h1 class="font-bold text-xl text-white ml-2">Beranda Monitoring</h1>
