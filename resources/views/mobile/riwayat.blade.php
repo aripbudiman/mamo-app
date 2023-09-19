@@ -5,7 +5,7 @@ $dates = generateDateRangeForThisMonth();
 $datesAsString = implode(', ', $dates);
 $month=getMonthList();
 @endphp
-<header class="list-tanggal-bulanan overflow-x-scroll bg-green-2 fixed w-full py-2 h-28">
+<header class="list-tanggal-bulanan overflow-x-scroll bg-green-2 fixed lg:w-96 w-full py-2 h-28">
     <div class="flex overflow-x-scroll mb-3">
         @foreach ($month as $item)
         <div class="btn-bulan px-2 flex justify-center mx-1 rounded-lg text-center py-2 text-xs bg-white/90">

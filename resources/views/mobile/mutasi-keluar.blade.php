@@ -1,15 +1,15 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="bg-green-2 h-15 fixed z-50 flex justify-center items-center w-full top-0">
+<header class="bg-green-2 h-15 fixed z-50 flex justify-center items-center w-full lg:w-96 top-0">
     <a href="{{  url()->previous() }}"
         class=" bg-white text-green-2 absolute left-4 flex justify-center w-[30px] h-[30px] shadow-md items-center px-2 py-1 rounded-md inset-y-4"><i
             class="bi bi-arrow-left"></i></a>
     <h1 class="text-white font-poppins font-semibold">Mutasi Anggota Keluar</h1>
 </header>
-<main class="absolute inset-x-0 pt-15 pb-20 overflow-y-auto">
+<main class="absolute inset-x-0 pt-15 pb-20 overflow-y-auto  bg-gray-200">
     <section>
         @forelse ($data as $item)
-        <div class="card bg-green-100 w-full mb-5">
+        <div class="card bg-white w-full mb-5">
             <header class="flex justify-between">
                 <div class="header_left flex gap-x-2 items-center m-3 h-20">
                     <div>

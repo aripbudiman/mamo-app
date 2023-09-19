@@ -1,11 +1,11 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="flex fixed z-50 bg-green-2 top-0 inset-x-0 justify-start items-center text-white h-15">
+<header class="flex fixed z-50 bg-green-2 top-0 w-full lg:w-96 justify-start items-center text-white h-15">
     <a href="{{ route('home.index') }}" class=" bg-white ml-5 py-1 px-2 rounded-md"><i
             class="bi bi-arrow-left text-xl text-green-2 dark:text-slate-100"></i></a>
     <h1 class="font-semibold text-xl ml-2">Statistik</h1>
 </header>
-<main class="absolute inset-x-0 pt-15 pb-20 overflow-y-auto">
+<main class="absolute inset-x-0 pt-15 pb-20 overflow-y-auto bg-white">
     <div class="w-full bg-green-100 ">
         <h1 class="text-center text-2xl font-semibold text-slate-700 mb-2">Par Petugas</h1>
         <canvas id="parPetugas" class="p-2"></canvas>

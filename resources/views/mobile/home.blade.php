@@ -43,7 +43,7 @@
     }
 
 </style>
-<header class="fixed z-50 top-0 inset-x-0 h-20 bg-green-2">
+<header class="fixed z-50 top-0 w-full lg:w-96 h-20 bg-green-2">
     <section class="flex items-center h-full">
         <input type="text" class="w-full h-10 mx-5 rounded-full border-none placeholder:font-poppins"
             placeholder="Cari nama anggota">

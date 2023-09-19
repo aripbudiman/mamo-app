@@ -1,13 +1,13 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="bg-green-2 h-15 fixed z-50 flex justify-center items-center w-full top-0">
+<header class="bg-green-2 h-15 fixed z-50 flex justify-center items-center w-full lg:w-96 top-0">
     <a href="{{  url()->previous() }}"
         class=" bg-white text-green-2 absolute left-4 flex justify-center w-[30px] h-[30px] shadow-md items-center px-2 py-1 rounded-md inset-y-4"><i
             class="bi bi-arrow-left"></i></a>
     <h1 class="text-white font-poppins font-semibold">Form Anggota Keluar</h1>
 </header>
-<main class="absolute inset-x-0 pt-15 pb-20 overflow-y-auto mx-5">
-    <form action="{{ route('mobile.store_anggota_keluar') }}" method="post" enctype="multipart/form-data">
+<main class="absolute inset-x-0 pt-15 pb-20 overflow-y-auto bg-white">
+    <form action="{{ route('mobile.store_anggota_keluar') }}" method="post" enctype="multipart/form-data" class="mx-7">
         @csrf
         <div class="my-3">
             <label for="tanggal" class="font-medium text-gray-900">Tanggal</label>

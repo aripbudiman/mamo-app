@@ -1,6 +1,6 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="h-15 bg-green-2 fixed z-50 inset-x-0 top-0 flex justify-start items-center">
+<header class="h-15 bg-green-2 fixed z-50 w-full lg:w-96 top-0 flex justify-start items-center">
     <a href="javascript:void(0);" onclick="history.back();"
         class="left-2 py-1 px-2 ml-5 text-green-2 p-2 hover:bg-slate-200 border rounded-md bg-white"><i
             class="bi bi-arrow-left"></i></a>

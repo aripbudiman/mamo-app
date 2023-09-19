@@ -38,7 +38,7 @@
     }
 
 </style>
-<header class="fixed z-50 top-0 inset-x-0 bg-green-2 flex justify-center items-center h-15">
+<header class="fixed z-50 top-0 w-full lg:w-96 bg-green-2 flex justify-center items-center h-15">
     <a href="javascript:void(0);" onclick="history.back();"
         class="left-2 py-1 px-2  absolute text-green-2 p-2 border rounded-md bg-white"><i
             class="bi bi-arrow-left"></i></a>

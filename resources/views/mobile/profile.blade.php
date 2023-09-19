@@ -1,6 +1,6 @@
 @extends('mobile.app')
 @section('mobile')
-<header class="bg-green-2 fixed z-50 top-0 inset-x-0 h-15 flex justify-end items-center">
+<header class="bg-green-2 fixed z-50 top-0 w-full lg:w-96 h-15 flex justify-end items-center">
     <a href="{{ route('settings') }}"
         class="bg-white hover:bg-slate-200 w-9 h-9 flex justify-center items-center rounded-md mr-5"><i
             class="bi bi-sliders text-green-2 text-3xl"></i></a>
