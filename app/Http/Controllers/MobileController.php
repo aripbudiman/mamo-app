@@ -53,12 +53,23 @@ class MobileController extends Controller
     }
 
     public function cashin(){
-        $userId = Auth::id();
-        $isAdmin = Auth::user()->roles == 'admin';
-        $data = $isAdmin
-            ? Monitoring::getUserIncomeSummary()
-            : Monitoring::getUserIncomeSummary($userId);
-        return view('mobile.cashin', compact('data'));
+        if(Auth::user()->roles =='admin'){
+            $data=Monitoring::getUserIncomeSummary();
+            return view('mobile.cashin',compact('data'));
+        }else{
+            $data=Monitoring::getUserIncomeSummary(Auth::id());
+            return view('mobile.cashin',compact('data'));
+        }
+    }
+
+    public function murabahah(){
+        if(Auth::user()->roles =='admin'){
+            $data=Murabahah::with('dokumentasi','user')->get();
+            return view('mobile.murabahah',compact('data'));
+        }else{
+            $data=Dokumentasi::all();
+            return view('mobile.murabahah',compact('data'));
+        }
     }
 
 
