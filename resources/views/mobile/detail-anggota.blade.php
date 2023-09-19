@@ -6,7 +6,7 @@
             class="bi bi-arrow-left"></i></a>
     <h1 class="text-white font-poppins font-semibold">Statistik Kunjungan Anggota</h1>
 </header>
-<main class="absolute inset-x-0 pt-15 pb-20 overflow-y-auto">
+<main class="absolute inset-x-0 pt-15 pb-20 overflow-y-auto bg-white">
     <section class="flex justify-center flex-col items-center m-5">
         <h1 class="font-poppins font-semibold text-gray-700 text-xl">{{ $anggota[0]['nama_anggota'] }}</h1>
         <p class=" text-slate-400 font-poppins">{{ $anggota[0]['id_anggota'] }}</p>

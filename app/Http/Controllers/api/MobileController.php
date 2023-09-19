@@ -40,7 +40,7 @@ class MobileController extends Controller
 
     public function live_search(Request $request){
         $query = $request->input('anggota');
-        $data = Anggota::where('nama_anggota', 'LIKE', "%{$query}%")->orWhere('majelis', 'LIKE', "%{$query}")->get();
+        $data = Anggota::where('nama_anggota', 'LIKE', "%{$query}%")->limit(10)->get();
         $result='';
         foreach($data as $item){
             $result.='  <div class="w-full flex gap-x-3 mb-8">
