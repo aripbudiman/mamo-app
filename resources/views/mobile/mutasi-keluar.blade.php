@@ -29,7 +29,7 @@
             <main>
                 <p class="px-3 mb-2 first-letter:uppercase text-gray-800">{{ $item->alesan }}</p>
                 <img src="{{ asset(str_replace('public','storage',$item->image)) }}"
-                    class="h-56 w-full object-cover bg-gray-100 p-1 overflow-y-scroll">
+                    class="h-full w-full object-cover bg-gray-100 p-1 overflow-y-scroll">
             </main>
             <footer class="grid grid-cols-2">
                 <button class="h-14 text-gray-700 hover:font-semibold"><i

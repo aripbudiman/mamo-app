@@ -5,7 +5,7 @@
         <div class="flex rounded-md shadow-sm w-full relative">
             <input type="text" id="search"
                 class="py-3 pr-4 pl-8 block foces:pl-4 w-full shadow-sm rounded-md text-sm focus:z-10 focus:border-green-1 focus:ring-gray-200 bg-gray-200"
-                placeholder="seacrh"><i class="bi bi-search absolute z-50 p-2 text-gray-600 text-lg"></i>
+                placeholder="search anggota"><i class="bi bi-search absolute z-50 p-2 text-gray-600 text-lg"></i>
         </div>
     </section>
 </Header>
