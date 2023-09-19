@@ -40,7 +40,7 @@ class MobileController extends Controller
     }
 
     public function anggota(){
-        $anggota=Anggota::with('user')->withSum('monitoring','nominal')->get();
+        $anggota=Anggota::with('user')->withSum('monitoring','nominal')->limit(30)->get();
         $user=User::where('roles','tpl')->get();
         return view('mobile.anggota',compact('anggota','user'));
     }

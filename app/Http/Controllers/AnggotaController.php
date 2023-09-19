@@ -181,7 +181,7 @@ class AnggotaController extends Controller
     }
 
     public function mutasi_keluar(){
-        $data=AnggotaKeluar::with('user')->orderBy('id','desc')->limit(20)->get();
+        $data=AnggotaKeluar::with('user')->orderBy('id','desc')->limit(30)->get();
         return view('mobile.mutasi-keluar',compact('data'));
     }
 }
