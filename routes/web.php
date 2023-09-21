@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/mobile/store_anggota_keluar',[AnggotaController::class,'store_anggota_keluar'])->name('mobile.store_anggota_keluar');
     Route::get('/mobile/mutasi_keluar',[AnggotaController::class,'mutasi_keluar'])->name('mobile.mutasi_keluar');
     Route::get('/mobile/cashin',[MobileController::class,'cashin'])->name('mobile.cashin');
+    Route::get('/mobile/sp3',[MobileController::class,'sp3'])->name('mobile.sp3');
 });
  
 Route::middleware('auth')->group(function(){

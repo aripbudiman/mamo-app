@@ -99,4 +99,8 @@ class MobileController extends Controller
         public function settings(){
             return view('mobile.setting');
         }
+
+        public function sp3(){
+            return view('mobile.sp3');
+        }
 }

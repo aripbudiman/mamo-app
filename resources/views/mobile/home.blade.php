@@ -106,10 +106,10 @@
             <img class="w-15" src="{{ asset('images/icons/anggota-keluar.svg') }}">
             <p class="text-center mt-2 text-xs">Mutasi Keluar</p>
         </a>
-        <a href="{{ route('mobilemonitoring.index') }}"
+        <a href="{{ route('mobile.sp3') }}"
             class="justify-self-center flex flex-col justify-center icon-toggle hidden items-center">
             <img class="w-15" src="{{ asset('images/icons/target.svg') }}">
-            <p class="text-center mt-2 text-xs">Target Eksekusi</p>
+            <p class="text-center mt-2 text-xs">Sp3 Belum Masuk</p>
         </a>
         <a id="toggle-more" class="justify-self-center flex flex-col justify-center items-center">
             <img class="w-15" src="{{ asset('images/icons/more.svg') }}">
