@@ -11,6 +11,7 @@ use App\Http\Controllers\mobile\MurabahahController;
 use App\Http\Controllers\mobile\MonitoringController as Monitoring;
 use App\Http\Controllers\mobile\WilayahController;
 use App\Http\Controllers\mobile\StatistikController;
+use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\RoadMapController;
 use Jenssegers\Agent\Agent;
 
@@ -59,6 +60,8 @@ Route::middleware('auth')->group(function () {
     Route::post('road_map/select_desa',[RoadMapController::class,'selectDesa'])->name('road_map.select_desa');
     Route::get('get_road_maps',[RoadMapController::class,'getRoadMaps'])->name('get_road_maps');
     Route::get('road_maps',[RoadMapController::class,'roadMaps'])->name('road_maps');
+    Route::get('/rolling',[DatabaseController::class,'index'])->name('rolling.index');
+    Route::post('/rolling/update',[DatabaseController::class,'update'])->name('rolling.update');
 });
 
 Route::middleware('auth')->group(function(){
