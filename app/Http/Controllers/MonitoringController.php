@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use LDAP\Result;
 use App\Models\User;
 use App\Models\Monitoring;
 use Illuminate\Http\Request;
-use App\Events\MonitoringEvent;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +12,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
+use Intervention\Image\Facades\Image;
 
 class MonitoringController extends Controller
 {
@@ -46,43 +44,75 @@ class MonitoringController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // return $request;
-        $request->validate([
-            'tanggal'=>'required',
-            'majelis'=>'required',
-            'anggota'=>'required',
-        ]);
-        DB::beginTransaction();
-        try {
-            $data = $request->all();
-            $uploadedFile = $request->file('dokumentasi');
-            $lastId = DB::table('monitoring')->orderBy('id', 'desc')->first();
-            if ($lastId !== null) {
-                $newId = $lastId->id + 1;
-            } else {
-                $newId = 1;
-            }
-            $newFilename = $newId.'__'.$data['anggota'].'__'.$data['majelis'].'__'.date('d-F-Y', strtotime($data['tanggal'])) . '.' . $uploadedFile->getClientOriginalExtension();
-            
-            $anggota=explode('-', $request->anggota);
-            $data['anggota']=$anggota[0];
-            $data['anggota_id']=$anggota[1];
-            $harian=date('d-m-Y',strtotime($request->tanggal));
-            $folderPath = storage_path('app/public/dokumentasi/' . $harian);
-            if (!file_exists($folderPath)) {
-                mkdir($folderPath, 0777, true); // Jika folder belum ada, buat dengan izin 777
-            }
-            $data['dokumentasi'] = $uploadedFile->storeAs('public/dokumentasi/'.$harian, $newFilename);
-            $data['user_id']=Auth::id();
-            Monitoring::create($data);
-            DB::commit();
-            return redirect()->back()->with('success', 'Monitoring berhasil ditambahkan');
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return $th;
+{
+    $request->validate([
+        'tanggal' => 'required',
+        'majelis' => 'required',
+        'anggota' => 'required',
+        'dokumentasi' => 'required|image', // Pastikan gambar diunggah
+    ]);
+
+    DB::beginTransaction();
+    try {
+        $data = $request->all();
+        $uploadedFile = $request->file('dokumentasi');
+
+        $anggota = explode('-', $request->anggota);
+        $data['anggota'] = $anggota[0];
+        $data['anggota_id'] = $anggota[1];
+        $harian = date('d-m-Y', strtotime($request->tanggal));
+        $folderPath = storage_path('app/public/dokumentasi/' . $harian);
+
+        if (!file_exists($folderPath)) {
+            mkdir($folderPath, 0777, true);
         }
+
+        // Mengubah ukuran gambar
+        $newFilename = $this->resizeAndSaveImage($uploadedFile, $data, $harian);
+
+        $data['user_id'] = Auth::id();
+        Monitoring::create($data);
+        DB::commit();
+        return redirect()->back()->with('success', 'Monitoring berhasil ditambahkan');
+    } catch (\Throwable $th) {
+        DB::rollBack();
+        return $th;
     }
+}
+
+// Fungsi untuk mengubah ukuran gambar dan menyimpannya
+private function resizeAndSaveImage($uploadedFile, &$data, $harian)
+{
+    $image = Image::make($uploadedFile);
+
+    // Mengubah ukuran gambar (misalnya, ke lebar 800px dan tinggi sesuai proporsinya)
+    $image->resize(800, null, function ($constraint) {
+        $constraint->aspectRatio();
+    });
+
+    // Buat nama file baru yang unik
+    $newFilename = $this->generateUniqueFilename($uploadedFile, $data, $harian);
+
+    // Simpan gambar yang diubah
+    $image->save(storage_path('app/public/dokumentasi/' . $harian . '/' . $newFilename));
+
+    $data['dokumentasi'] = 'public/dokumentasi/' . $harian . '/' . $newFilename;
+
+    return $newFilename;
+}
+
+// Fungsi untuk menghasilkan nama file yang unik
+private function generateUniqueFilename($uploadedFile, $data, $harian)
+{
+    $lastId = DB::table('monitoring')->orderBy('id', 'desc')->first();
+    if ($lastId !== null) {
+        $newId = $lastId->id + 1;
+    } else {
+        $newId = 1;
+    }
+
+    return $newId . '__' . $data['anggota'].$data[''] . '__' . $data['majelis'] . '__' . date('d-F-Y', strtotime($data['tanggal'])) . '.' . $uploadedFile->getClientOriginalExtension();
+}
 
     /**
      * Display the specified resource.
