@@ -13,9 +13,6 @@
 @endsection
 @push('scripts')
 <script>
-    //     let html = `<div class="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5 dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] dark:text-gray-400">
-    // asd
-    // </div>`
     const data = fetch('https://stok.mamo-app.my.id/api/sp3')
         .then(response => response.json())
         .then(data => {
